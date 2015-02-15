@@ -1,4 +1,5 @@
 execute pathogen#infect() 
+let mapleader = ","
 set nocompatible
 syntax on
 set number
@@ -22,8 +23,8 @@ set clipboard+=unnamed   " make the system's keyboard work with vim y, d, and P 
 " solarized things, uncomment to enable
 let g:solarized_termtran=1
 set background=dark
-colorscheme solarized
-
+"colorscheme solarized
+colorscheme spacegray
 " ctrlP stuff, stolen from Konrad Wasowicz
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|output|bower_components|dist)|(\.(swp|hg|git|svn))$'
@@ -33,3 +34,13 @@ let g:ctrlp_cmd = 'CtrlP'
 nmap > >>
 nmap < <<
 imap jk <Esc>
+autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on git commits
+map <C-n> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+nnoremap <leader>r :!%:p
+" open a new vertical split window with <leader> w
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
