@@ -36,10 +36,9 @@ nmap < <<
 imap jk <Esc>
 autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on git commits
 map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif " quit vim if NerdTree is the only buffer
 nnoremap <leader>r :!%:p
-" open a new vertical split window with <leader> w
-nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>w <C-w>v<C-w>l  " open a new vertical split window with <leader> w
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
