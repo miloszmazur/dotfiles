@@ -1,6 +1,6 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
-	url = https://github.com/diablourbano/oh-my-zsh
+	url = git://github.com/diablourbano/oh-my-zsh
 [submodule "vim/bundle/Spacegray.vim"]
 	path = vim/bundle/Spacegray.vim
 	url = git://github.com/ajh17/Spacegray.vim.git
@@ -9,25 +9,25 @@
 	url = git://github.com/jiangmiao/auto-pairs.git
 [submodule "vim/bundle/badwolf"]
 	path = vim/bundle/badwolf
-	url = https://github.com/sjl/badwolf.git
+	url = git://github.com/sjl/badwolf.git
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = git://github.com/kien/ctrlp.vim
 [submodule "vim/bundle/delimitMate"]
 	path = vim/bundle/delimitMate
-	url = https://github.com/Raimondi/delimitMate.git
+	url = git://github.com/Raimondi/delimitMate.git
 [submodule "vim/bundle/neocomplete.vim"]
 	path = vim/bundle/neocomplete.vim
-	url = https://github.com/Shougo/neocomplete.vim.git
+	url = git://github.com/Shougo/neocomplete.vim.git
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
+	url = git://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
-	url = https://github.com/bling/vim-airline
+	url = git://github.com/bling/vim-airline
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized
 [submodule "vim/bundle/vim-commentary"]
 	path = vim/bundle/vim-commentary
 	url = git://github.com/tpope/vim-commentary.git
@@ -36,16 +36,16 @@
 	url = git://github.com/tpope/vim-endwise.git
 [submodule "vim/bundle/vim-latex"]
 	path = vim/bundle/vim-latex
-	url = https://github.com/vim-latex/vim-latex.git
+	url = git://github.com/vim-latex/vim-latex.git
 [submodule "vim/bundle/vim-lucius"]
 	path = vim/bundle/vim-lucius
-	url = https://github.com/jonathanfilip/vim-lucius.git
+	url = git://github.com/jonathanfilip/vim-lucius.git
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = git://github.com/tpope/vim-repeat.git
 [submodule "vim/bundle/vim-ruby"]
 	path = vim/bundle/vim-ruby
-	url = it://github.com/vim-ruby/vim-ruby.git
+	url = git://github.com/vim-ruby/vim-ruby.git
 [submodule "vim/bundle/vim-slim"]
 	path = vim/bundle/vim-slim
 	url = git://github.com/slim-template/vim-slim.git
@@ -54,4 +54,4 @@
 	url = git://github.com/tpope/vim-surround.git
 [submodule "vim/bundle/wildfire.vim"]
 	path = vim/bundle/wildfire.vim
-	url = https://github.com/gcmt/wildfire.vim.git
+	url = git://github.com/gcmt/wildfire.vim.git
