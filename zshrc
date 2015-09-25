@@ -50,7 +50,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tyr/.rvm/gems/ruby-2.1.2/bin:/Users/tyr/.rvm/gems/ruby-2.1.2@global/bin:/Users/tyr/.rvm/rubies/ruby-2.1.2/bin:/Users/tyr/.rvm/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tyr/.rvm/gems/ruby-2.1.2/bin:/Users/tyr/.rvm/gems/ruby-2.1.2@global/bin:/Users/tyr/.rvm/rubies/ruby-2.1.2/bin:/Users/tyr/.rvm/bin:/usr/local/texlive/2015/bin:$PATH"
+export PYTHONPATH=/Users/tyr/Projects/caffe/python
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -67,6 +68,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tyr/.rvm/gems/r
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
+
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -77,7 +79,4 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tyr/.rvm/gems/r
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# 
-# alias for sencha command -.-
-alias sencha="~/bin/Sencha/Cmd/5.1.0.26/sencha"
 alias vim="mvim -v"
