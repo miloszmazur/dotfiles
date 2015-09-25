@@ -24,7 +24,7 @@ set expandtab
 set t_Co=256
 set clipboard+=unnamed
 set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮
-set showbreak=↪\ 
+set showbreak=↪\
 
 " colorschemes!
 " colorscheme gruvbox

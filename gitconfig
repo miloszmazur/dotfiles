@@ -38,6 +38,8 @@
 [diff]
 	tool = p4mergetool
 [difftool "p4mergetool"]
-	com = " "
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
 [credential]
 	helper = osxkeychain
+[init]
+	templatedir = ~/.git_template
