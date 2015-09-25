@@ -1,6 +1,7 @@
 execute pathogen#infect()
 let mapleader = ","
 set nocompatible
+set noshowmode
 filetype plugin indent on
 syntax on
 set bg=dark    " Setting dark mode
@@ -25,35 +26,27 @@ set t_Co=256
 set clipboard+=unnamed
 set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮
 set showbreak=↪\
+set tags=./tags
+set splitbelow " make vim open splits on right and bottom
+set splitright " make vim open splits on right and bottom
 
 " colorschemes!
 " colorscheme gruvbox
 " colorscheme solarized
 " colorscheme spacegray
 colorscheme badwolf
-let g:solarized_termtran=1
 
-" CtrlP
-let g:ctrlp_match_window = 'bottom,order:ttb'
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|output|bower_components|dist)|(\.(swp|hg|git|svn))$'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_switch_buffer = 0
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+nnoremap j gj
+nnoremap k gk
 
-" indent faster, with single '>' and '<'
-nmap > >>
-nmap < <<
+" move between buffers faster
+nnoremap <silent> <Space><Space> :bn<CR>
+nnoremap <silent> <Space><Leader> :bp<CR>
 
-imap jk <Esc>
-" remove search hightlights
-nmap <silent> ,h :nohls<CR>
-autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on git commits
-" toggle NerdTree with ctrl + n
-map <C-n> :NERDTreeToggle<CR>
-" quit vim if NerdTree is the only buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-nnoremap <leader>r :!%:p " run fies with a shebang with <leader> r
 " open a new vertical split window with <leader> w
 nnoremap <leader>w <C-w>v<C-w>l
 
@@ -62,16 +55,41 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-" make vim open splits on right and bottom
-set splitbelow
-set splitright
 
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+nmap <silent> <Leader>l :nohls<CR> " remove search hightlights
 
-" Use neocomplete.
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" toggle between relative and regular line numbers
+nnoremap <silent> <Leader>n :set relativenumber!<Cr>
+" alyways use absolute line numbers in insert mode
+
+" indent faster, with single '>' and '<'
+nmap > >>
+nmap < <<
+
+let g:BASH_Ctrl_j = 'off' " remove support for 'jumping' into insert mode
+
+" CtrlP
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|output|bower_components|dist)|(\.(swp|hg|git|svn))$'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden --ignore .git --ignore .DS_Store --ignore "**/*.pyc" -g ""'
+
+"nerdTREE
+" toggle NerdTree with ctrl + n
+map <C-n> :NERDTreeToggle<CR>
+" quit vim if NerdTree is the only buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" TeX Suite
+let g:tex_flavor='latex'
+let g:Tex_MultipleCompileFormats='dvi,pdf'
+
+
+" neocomplete
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
@@ -121,6 +139,18 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
 endif
 let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+" GitGutter
+let g:gitgutter_enabled = 0
+let g:gitgutter_map_keys = 0
+nnoremap <Leader>gg :GitGutterToggle<Cr>
+nnoremap <Leader>gs :Gstatus<Cr>
+autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on git commits
 
 " Simple re-format for minified Javascript
 command! UnMinify call UnMinify()
