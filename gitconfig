@@ -28,6 +28,7 @@
 	untracked = cyan
 [core]
 	excludesfile = /Users/tyr/.gitexcludes
+	editor = mvim -v
 [merge]
 	tool = p4mergetool
 [mergetool "p4mergetool"]
@@ -43,3 +44,5 @@
 	helper = osxkeychain
 [init]
 	templatedir = ~/.git_template
+[push]
+	default = simple

@@ -1,3 +1,4 @@
 " gui options for macvim - remove scrollbars
-set guioptions -=r,L
+set guioptions-=r
+set guioptions-=L
 

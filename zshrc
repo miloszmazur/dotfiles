@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/dotfiles/oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -44,14 +44,20 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew git-extras lol python ruby)
+plugins=(
+    git
+    brew
+    git-extras
+    python
+    cargo
+    rust
+)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tyr/.rvm/gems/ruby-2.1.2/bin:/Users/tyr/.rvm/gems/ruby-2.1.2@global/bin:/Users/tyr/.rvm/rubies/ruby-2.1.2/bin:/Users/tyr/.rvm/bin:/usr/local/texlive/2015/bin:$PATH"
-export PYTHONPATH=/Users/tyr/Projects/caffe/python
+export PATH="/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tyr/.rvm/gems/ruby-2.1.2/bin:/Users/tyr/.rvm/gems/ruby-2.1.2@global/bin:/Users/tyr/.rvm/rubies/ruby-2.1.2/bin:/Users/tyr/.rvm/bin:/usr/local/texlive/2015/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -79,4 +85,31 @@ export PYTHONPATH=/Users/tyr/Projects/caffe/python
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
 alias vim="mvim -v"
+alias freespace="diskutil info /dev/disk1 | ag \"Volume Available Space\""
+alias lsd="ls -lrt"
+alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
+alias cr="cargo run"
+alias icloud=" ~/Library/Mobile\ Documents/com~apple~CloudDocs/"
+
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src/
+
+# Setup fzf
+# ---------
+if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
+  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
+fi
+
+# Auto-completion
+# ---------------
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+
+# Key bindings
+# ------------
+source "/usr/local/opt/fzf/shell/key-bindings.zsh"
