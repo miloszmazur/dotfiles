@@ -1,6 +1,5 @@
-execute pathogen#infect()
-filetype plugin indent on
 let mapleader = ","
+filetype plugin indent on
 nnoremap Y y$
 set nocompatible
 set noshowmode
@@ -106,6 +105,29 @@ function! UnMinify()
     normal ggVG=
 endfunction
 
+" plugins
+call plug#begin('~/.vim/plugged')
+Plug 'w0rp/ale'
+Plug 'tpope/vim-surround'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/vim-slash'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-unimpaired'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'scrooloose/nerdtree'
+Plug 'benmills/vimux'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'rust-lang/rust.vim'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+call plug#end()
+
 " commentary
 autocmd FileType matlab setlocal commentstring=\%\ %s
 
@@ -124,7 +146,7 @@ noremap <silent> H :ALEHover<CR>
 noremap <silent> R :ALEFindReferences<CR>
 noremap <silent> Q :ALEGoToDefinition<CR>
 
-"vimux 
+"vimux
 " run current file with python
 map <Leader>rp :call VimuxRunCommand("clear; python " . bufname("%"))<CR>
  " Prompt for a command to run
