@@ -87,7 +87,7 @@ export PATH="/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:/Us
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias vim="mvim -v"
-alias freespace="diskutil info /dev/disk1 | ag \"Volume Available Space\""
+alias freespace="diskutil info /dev/disk1s1 | rg \"Volume Free Space\""
 alias lsd="ls -lrt"
 alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
 alias cr="cargo run"
