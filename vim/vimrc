@@ -62,6 +62,9 @@ nnoremap <leader>s :%s/\s\+$//e<CR>
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <leader>v :vnew<CR>
 
+"insert a timestamp in default date format
+nnoremap <leader>tt :put =strftime('%c')<CR>
+
 " move between splits faster - with ctrl + direction
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
