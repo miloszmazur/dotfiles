@@ -36,7 +36,6 @@ set guioptions=
 " use rg for grepping
 set grepprg=rg\ --vimgrep\ --fixed-strings
 
-
 " colorschemes!
 set bg=dark
 colorscheme gruvbox
@@ -123,6 +122,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'w0rp/ale'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " commentary
