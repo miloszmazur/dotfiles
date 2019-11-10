@@ -1,3 +1,5 @@
 tmux/plugins
 tmux/resurrect
 vim/plugged
+vim/spell
+*.old
