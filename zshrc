@@ -92,6 +92,7 @@ alias lsd="ls -lrt"
 alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
 alias cr="cargo run"
 alias icloud=" ~/Library/Mobile\ Documents/com~apple~CloudDocs/"
+alias cat="bat"
 
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
