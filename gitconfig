@@ -6,9 +6,16 @@
     ci = commit
     st = status
     br = branch
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    dump = cat-file -p
+    acm =  !git add -A . && git commit -m
+    ac =  !git add -A . && git commit
 	count   = !git shortlog -sn
+    dump = cat-file -p
+    fl = log -u
+    glog = log --graph --oneline --decorate --all --pretty
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --decorate
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    lt = log --graph --oneline --decorate --all
 [color]
 	branch = auto
 	diff = auto
