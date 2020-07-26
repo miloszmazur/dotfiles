@@ -61,14 +61,11 @@ export PATH="/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:/Us
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
- export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -93,6 +90,8 @@ alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
 alias cr="cargo run"
 alias icloud=" ~/Library/Mobile\ Documents/com~apple~CloudDocs/"
 alias cat="bat"
+alias res-work="displayplacer \"id:A3A511FA-8117-37A9-D510-25AB0C8A1153 res:3840x1600 hz:30 color_depth:4 scaling:off origin:(0,0) degree:0\""
+alias res-gaming="displayplacer \"id:A3A511FA-8117-37A9-D510-25AB0C8A1153 res:1920x1080 hz:60 color_depth:4 scaling:off origin:(0,0) degree:0\""
 
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

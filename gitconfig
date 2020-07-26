@@ -17,6 +17,8 @@
     ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
     lt = log --graph --oneline --decorate --all
 	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+    out = log --pretty=oneline --abbrev-commit --graph @{u}..
+    inc = !git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}
 [color]
 	branch = auto
 	diff = auto
