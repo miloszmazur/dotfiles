@@ -53,14 +53,15 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 # Disable automatic emoji substitution (i.e. use plain text smileys)
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
 
-# hide iTerm2 icon from dock and cmd tab switching
-# uncomment the line below to enable it back again:
-# /usr/libexec/PlistBuddy -c 'Add :LSUIElement bool true' /Applications/iTerm.app/Contents/Info.plist
-# /usr/libexec/PlistBuddy -c 'Delete :LSUIElement' /Applications/iTerm.app/Contents/Info.plist
-
 # Hide all files from desktop unless viewed from Finder
 # change to true to reverse changes
 defaults write com.apple.finder CreateDesktop -bool false
 
 # use bacspace to go back in Safari
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2BackspaceKeyNavigationEnabled -bool YES
+
+# save screenshots to iCloud
+defaults write com.apple.screencapture location ~/Library/Mobile\ Documents/com~apple~CloudDocs/Screenshots
+
+# disable mouse acceleration
+defaults write .GlobalPreferences com.apple.mouse.scaling -1
