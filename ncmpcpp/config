@@ -1,0 +1,30 @@
+mpd_music_dir = "/Users/tyr/Music"
+mpd_host = "localhost"
+mpd_port = "6600"
+
+ignore_leading_the = yes
+media_library_primary_tag = album_artist
+
+external_editor = "vim"
+
+use_console_editor = "yes"
+
+# progressbar_look = "▉▉▉"
+progressbar_color = "black"
+progressbar_elapsed_color = "red"
+
+now_playing_prefix = "$b$2♫ >"
+now_playing_suffix = "$/b"
+
+progressbar_look = "▀▀ "
+song_columns_list_format = "(5)[red]{n} (30)[yellow]{t} (30)[red]{a} (30)[green]{b} (5)[white]{l} "
+song_list_format = "$7[$4%n$7]$9 $7[$9$3%l$7]$9 $1|$9 $7%a$9 $1|$9 $2%t$9 $R $5%b$9"
+song_status_format = " $2%a $2» $8%t $8» $3%b "
+
+mouse_support = "yes"
+header_visibility = "no"
+statusbar_visibility = "yes"
+playlist_display_mode = "columns" (classic/columns)
+autocenter_mode = "yes"
+titles_visibility = "yes"
+enable_window_title = "no"
