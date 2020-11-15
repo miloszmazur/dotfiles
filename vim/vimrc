@@ -1,12 +1,10 @@
 let mapleader = ","
 filetype plugin indent on
 nnoremap Y y$
-set nocompatible
 set noshowmode
 set mouse=a
 syntax on
 set term=screen-256color
-"imap <esc> :noh<return><esc>
 set number
 set relativenumber
 set hidden
@@ -16,6 +14,7 @@ set showcmd " show incomplete commands in the status bar
 set history=100
 set autoindent "indents using whitespaces
 set laststatus=2 " make file status etc. always visible
+set cursorline
 set smartindent
 set ignorecase
 set smarttab
@@ -25,12 +24,10 @@ set tabstop=4
 set scrolloff=8
 set expandtab
 set t_Co=256
-set clipboard+=unnamed
+set clipboard^=unnamed
 set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮
 set showbreak=↪\
-set tags=./tags
-set splitbelow " make vim open splits on right and bottom
-set splitright " make vim open splits on right and bottom
+set splitbelow splitright
 set guioptions=
 
 " use rg for grepping
@@ -59,12 +56,6 @@ nnoremap <leader>v :vnew<CR>
 
 "insert a timestamp in default date format
 nnoremap <leader>dt :put =strftime('%c')<CR>
-
-" move between splits faster - with ctrl + direction
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 "nerdTREE
 " toggle NerdTree with ctrl + n
