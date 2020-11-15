@@ -1,0 +1,7 @@
+{
+        "python.formatting.blackPath": "/usr/local/bin/black",
+        "python.formatting.provider": "black",
+        "python.jediEnabled": true,
+        "python.jediPath": "/usr/local/lib/python3.9/site-packages",
+        "suggest.timeout": 500
+}

@@ -70,20 +70,19 @@ Plug 'ap/vim-css-color'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'codota/tabnine-vim'
 Plug 'godlygeek/tabular'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-sleuth'
-Plug 'w0rp/ale'
 " colors
 Plug 'AlessandroYorba/Alduin'
 Plug 'AlessandroYorba/Despacio'
@@ -103,46 +102,70 @@ autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on g
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
-"ale
-let g:ale_fix_on_save = 1
-let g:ale_open_list = 1
-
-let g:ale_linters = {
-\  'python': ['flake8'],
-\  'rust': ['rls'],
-\  'javascript': ['eslint'],
-\  'typescript': ['eslint'],
-\}
-let g:ale_fixers = {
-\  '*': ['remove_trailing_lines', 'trim_whitespace'],
-\  'python': ['black'],
-\  'rust': ['rustfmt'],
-\  'javascript': ['prettier'],
-\}
-let g:ale_rust_rls_toolchain = 'stable'
-
-
-noremap <silent> H :ALEHover<CR>
-noremap <silent> R :ALEFindReferences<CR>
-noremap <silent> Q :ALEGoToDefinition<CR>
-
-"vimux
- " Prompt for a command to run
- map <Leader>tr :VimuxPromptCommand<CR>
- " Run last command executed by VimuxRunCommand
- map <Leader>tt :VimuxRunLastCommand<CR>
-
 " test fzf mappings
 nnoremap <silent> <Leader>/ :Rg<Cr>
 nnoremap <c-p> :Files<CR>
-nnoremap <silent> <Leader>f :Files<Cr>
-nnoremap <silent> <Leader>F :GFiles<Cr>
-
 nnoremap <silent> <Leader>b :Buffers<Cr>
 nnoremap <silent> <Leader>h :History<Cr>
-
 nnoremap <silent> <Leader>l :Lines<Cr>
-nnoremap <silent> <Leader>L :BLines<Cr>
 
-nnoremap <silent> <Leader>t :Tags<Cr>
-nnoremap <silent> <Leader>T :BTags<Cr>
+" coc test
+let g:coc_global_extensions = [
+\  'coc-json',
+\  'coc-marketplace',
+\  'coc-prettier',
+\  'coc-python',
+\  'coc-tabnine',
+\  'coc-tsserver',
+\  'coc-yaml',
+\]
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+nnoremap <silent> <leader>f :call CocAction('format')<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
