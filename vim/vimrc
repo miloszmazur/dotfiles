@@ -1,13 +1,13 @@
 let mapleader = ","
 filetype plugin indent on
 nnoremap Y y$
+syntax on
 set noshowmode
 set mouse=a
-syntax on
 set term=screen-256color
 set number
 set relativenumber
-set hidden
+set hidden nobackup nowritebackup
 set backspace=indent,eol,start
 set hls is " highlight matches and start search while typing
 set showcmd " show incomplete commands in the status bar
@@ -17,10 +17,6 @@ set laststatus=2 " make file status etc. always visible
 set cursorline
 set smartindent
 set ignorecase
-set smarttab
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
 set scrolloff=8
 set expandtab
 set t_Co=256
@@ -28,14 +24,10 @@ set clipboard^=unnamed
 set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮
 set showbreak=↪\
 set splitbelow splitright
+set signcolumn=number
 set guioptions=
-
 " use rg for grepping
 set grepprg=rg\ --vimgrep\ --fixed-strings
-
-" colorschemes!
-set bg=dark
-colorscheme gruvbox
 
 nnoremap <Down> gj
 nnoremap <Up> gk
@@ -57,32 +49,6 @@ nnoremap <leader>v :vnew<CR>
 "insert a timestamp in default date format
 nnoremap <leader>dt :put =strftime('%c')<CR>
 
-"nerdTREE
-" toggle NerdTree with ctrl + n
-map <C-n> :NERDTreeToggle<CR>
-" quit vim if NerdTree is the only buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-
-set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
-" TeX Suite
-let g:tex_flavor='latex'
-let g:Tex_MultipleCompileFormats='dvi,pdf'
-
-" GitGutter
-let g:gitgutter_enabled = 0
-let g:gitgutter_map_keys = 0
-nnoremap <Leader>gg :GitGutterToggle<Cr>
-nnoremap <Leader>gs :Gstatus<Cr>
-nnoremap <Leader>gd :Gdiff<Cr>
-
-autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on git commits
-
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
-
 " Simple re-format for minified Javascript
 command! UnMinify call UnMinify()
 function! UnMinify()
@@ -96,42 +62,63 @@ endfunction
 
 " plugins
 call plug#begin('~/.vim/plugged')
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter'
+Plug 'ap/vim-css-color'
 Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'codota/tabnine-vim'
 Plug 'godlygeek/tabular'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-sleuth'
 Plug 'w0rp/ale'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+" colors
+Plug 'AlessandroYorba/Alduin'
+Plug 'AlessandroYorba/Despacio'
+Plug 'fcpg/vim-farout'
 call plug#end()
 
-" commentary
-autocmd FileType matlab setlocal commentstring=\%\ %s
+" colorschemes!
+set bg=dark
+colorscheme gruvbox
+
+set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on git commits
+
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
 "ale
 let g:ale_fix_on_save = 1
 let g:ale_open_list = 1
 
-let g:ale_linters = { 'python': ['flake8'], 'rust': ['rls'], 'javascript': ['eslint'] }
+let g:ale_linters = {
+\  'python': ['flake8'],
+\  'rust': ['rls'],
+\  'javascript': ['eslint'],
+\  'typescript': ['eslint'],
+\}
 let g:ale_fixers = {
-\   'rust': ['rustfmt'],
-\   'python': ['black'],
-\   'javascript': ['eslint', 'prettier'],
-\   '*': ['remove_trailing_lines'],
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  'python': ['black'],
+\  'rust': ['rustfmt'],
+\  'javascript': ['prettier'],
 \}
 let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_python_flake8_options = '--max-line-length=88'
+
 
 noremap <silent> H :ALEHover<CR>
 noremap <silent> R :ALEFindReferences<CR>
@@ -142,8 +129,18 @@ noremap <silent> Q :ALEGoToDefinition<CR>
  map <Leader>tr :VimuxPromptCommand<CR>
  " Run last command executed by VimuxRunCommand
  map <Leader>tt :VimuxRunLastCommand<CR>
-" TabNine
-set rtp+=~/tools/tabnine-vim
-"fzf
-set rtp+=/usr/local/opt/fzf
+
+" test fzf mappings
+nnoremap <silent> <Leader>/ :Rg<Cr>
 nnoremap <c-p> :Files<CR>
+nnoremap <silent> <Leader>f :Files<Cr>
+nnoremap <silent> <Leader>F :GFiles<Cr>
+
+nnoremap <silent> <Leader>b :Buffers<Cr>
+nnoremap <silent> <Leader>h :History<Cr>
+
+nnoremap <silent> <Leader>l :Lines<Cr>
+nnoremap <silent> <Leader>L :BLines<Cr>
+
+nnoremap <silent> <Leader>t :Tags<Cr>
+nnoremap <silent> <Leader>T :BTags<Cr>
