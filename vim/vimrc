@@ -1,4 +1,4 @@
-let mapleader = ","
+let mapleader = " "
 filetype plugin indent on
 nnoremap Y y$
 syntax on
@@ -28,6 +28,8 @@ set signcolumn=number
 set guioptions=
 " use rg for grepping
 set grepprg=rg\ --vimgrep\ --fixed-strings
+set guifont=Fira\ Code\ Retina
+set macligatures
 
 nnoremap <Down> gj
 nnoremap <Up> gk
