@@ -62,22 +62,17 @@ function! UnMinify()
     normal ggVG=
 endfunction
 
-" plugins
 call plug#begin('~/.vim/plugged')
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Raimondi/delimitMate'
-Plug 'ap/vim-css-color'
-Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'godlygeek/tabular'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-sleuth'
@@ -93,14 +88,7 @@ call plug#end()
 set bg=dark
 colorscheme gruvbox
 
-set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-
 autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on git commits
-
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
 
 " test fzf mappings
 nnoremap <silent> <Leader>/ :Rg<Cr>
