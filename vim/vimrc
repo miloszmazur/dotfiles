@@ -9,7 +9,7 @@ set number
 set relativenumber
 set hidden nobackup nowritebackup
 set backspace=indent,eol,start
-set hls is " highlight matches and start search while typing
+set hlsearch incsearch
 set showcmd " show incomplete commands in the status bar
 set history=100
 set autoindent "indents using whitespaces
