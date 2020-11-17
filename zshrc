@@ -38,6 +38,8 @@ fi
 # Setup fzf
 # ---------
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
 if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
 fi
@@ -48,4 +50,6 @@ fi
 
 # Key bindings
 # ------------
+export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --no-ignore'
+
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
