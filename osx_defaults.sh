@@ -65,3 +65,7 @@ defaults write com.apple.screencapture location ~/Library/Mobile\ Documents/com~
 
 # disable mouse acceleration
 defaults write .GlobalPreferences com.apple.mouse.scaling -1
+
+# disable font smoothing https://tonsky.me/blog/monitors/
+defaults -currentHost write -g AppleFontSmoothing -int 0
+
