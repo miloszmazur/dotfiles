@@ -4,9 +4,7 @@ nnoremap Y y$
 syntax on
 set noshowmode
 set mouse=a
-set term=screen-256color
 set number
-set relativenumber
 set hidden nobackup nowritebackup
 set backspace=indent,eol,start
 set hlsearch incsearch
@@ -26,10 +24,10 @@ set showbreak=↪\
 set splitbelow splitright
 set signcolumn=number
 set guioptions=
+set updatetime=300
 " use rg for grepping
 set grepprg=rg\ --vimgrep\ --fixed-strings
 set guifont=Fira\ Code\ Retina
-set macligatures
 
 nnoremap <Down> gj
 nnoremap <Up> gk
@@ -62,32 +60,6 @@ function! UnMinify()
     normal ggVG=
 endfunction
 
-call plug#begin('~/.vim/plugged')
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Raimondi/delimitMate'
-Plug 'bling/vim-airline'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/vim-slash'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-" colors
-Plug 'AlessandroYorba/Alduin'
-Plug 'AlessandroYorba/Despacio'
-Plug 'fcpg/vim-farout'
-call plug#end()
-
-" colorschemes!
-set bg=dark
-colorscheme gruvbox
-
 autocmd Filetype gitcommit setlocal spell textwidth=72  " set columns to 72 on git commits
 
 " test fzf mappings
@@ -99,10 +71,15 @@ nnoremap <silent> <Leader>l :Lines<Cr>
 
 " coc test
 let g:coc_global_extensions = [
+\  'coc-css',
+\  'coc-eslint',
+\  'coc-jedi',
 \  'coc-json',
+\  'coc-markdownlint',
 \  'coc-marketplace',
 \  'coc-prettier',
-\  'coc-python',
+\  'coc-sh',
+\  'coc-swagger',
 \  'coc-tabnine',
 \  'coc-tsserver',
 \  'coc-yaml',
@@ -157,3 +134,48 @@ inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+
+augroup filetype_jsx
+    autocmd!
+    autocmd FileType javascript set filetype=javascriptreact
+augroup END
+
+let g:polyglot_disabled = ['javascriptreact']
+
+call plug#begin('~/.vim/plugged')
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Raimondi/delimitMate'
+Plug 'bling/vim-airline'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'jlanzarotta/bufexplorer'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-slash'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'habamax/vim-asciidoctor'
+" Plug 'yuezk/vim-js'
+" Plug 'maxmellon/vim-jsx-pretty'
+Plug 'sheerun/vim-polyglot'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+
+" colors
+Plug 'AlessandroYorba/Alduin'
+Plug 'AlessandroYorba/Despacio'
+Plug 'fcpg/vim-farout'
+Plug 'morhetz/gruvbox'
+call plug#end()
+
+" colorschemes!
+set bg=dark
+colorscheme gruvbox
