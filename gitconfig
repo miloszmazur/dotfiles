@@ -1,53 +1,55 @@
 [user]
-	name = Miłosz Mazur
-	email = milosz.mazur@hotmail.com
+  name = Miłosz Mazur
+  email = milosz.mazur@jeppesen.com
 [alias]
-	co = checkout
-    ci = commit
-    st = status
-    br = branch
-    acm =  !git add -A . && git commit -m
-    ac =  !git add -A . && git commit
-	count   = !git shortlog -sn
-    dump = cat-file -p
-    fl = log -u
-    glog = log --graph --oneline --decorate --all --pretty
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --decorate
-    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-    lt = log --graph --oneline --decorate --all
-	alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
-    out = log --pretty=oneline --abbrev-commit --graph @{u}..
-    inc = !git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  pom = push origin master
+  acm =  !git add -A . && git commit -m
+  ac =  !git add -A . && git commit
+  count   = !git shortlog -sn
+  dump = cat-file -p
+  fl = log -u
+  glog = log --graph --oneline --decorate --all --pretty
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  lt = log --graph --oneline --decorate --all
+  alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
+  out = log --pretty=oneline --abbrev-commit --graph @{u}..
+  inc = !git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}
 [color]
-	branch = auto
-	diff = auto
-	status = auto
+  branch = auto
+  diff = auto
+  status = auto
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+  added = yellow
+  changed = green
+  untracked = cyan
 [core]
-	excludesfile = /Users/tyr/.gitexcludes
-	editor = mvim -v
+  excludesfile = /Users/tyr/.gitexcludes
+  editor = nvim
 [merge]
-	tool = p4mergetool
+  tool = p4mergetool
 [mergetool "p4mergetool"]
-	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
-	trustExitCode = false
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+  trustExitCode = false
 [mergetool]
-	keepBackup = false
+  keepBackup = false
 [diff]
-	tool = p4mergetool
+  tool = p4mergetool
 [difftool "p4mergetool"]
-	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
+  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [init]
-	templatedir = ~/.git_template
+  templatedir = ~/.git_template
+  defaultBranch = main
 [push]
-	default = simple
+  default = simple
