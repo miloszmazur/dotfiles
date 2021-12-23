@@ -33,7 +33,7 @@
   changed = green
   untracked = cyan
 [core]
-  excludesfile = /Users/tyr/.gitexcludes
+  excludesfile = ~/.gitexcludes
   editor = nvim
 [merge]
   tool = p4mergetool
