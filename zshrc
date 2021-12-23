@@ -1,24 +1,27 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
- ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 plugins=(
-    brew
-    git
-    git-extras
-    python
-    tmux
+    brew cargo copydir dirhistory kubectl python rust
+    tmux jira docker fd fzf npm ripgrep ssh-agent
+    yarn
+    # pipenv
 )
 
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tyr/.rvm/gems/ruby-2.1.2/bin:/Users/tyr/.rvm/gems/ruby-2.1.2@global/bin:/Users/tyr/.rvm/rubies/ruby-2.1.2/bin:/Users/tyr/.rvm/bin:/usr/local/texlive/2015/bin:$PATH"
-export LC_ALL=en_US.UTF-8
+export EDITOR='nvim'
 export LANG=en_US.UTF-8
-export EDITOR='vim'
+export LC_ALL=en_US.UTF-8
+export PATH="/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tyr/.rvm/gems/ruby-2.1.2/bin:/Users/tyr/.rvm/gems/ruby-2.1.2@global/bin:/Users/tyr/.rvm/rubies/ruby-2.1.2/bin:/Users/tyr/.rvm/bin:/usr/local/texlive/2015/bin:$PATH"
+export TMUX_TMPDIR=~/.tmux_sessions
 
-alias vim="mvim -v"
+alias ic="ibmcloud"
+alias kn="kubens"
+alias kx="kubectx"
+alias vim="nvim"
 alias freespace="diskutil info /dev/disk1s1 | rg \"Volume Free Space\""
 alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
 alias cr="cargo run"
@@ -38,6 +41,8 @@ fi
 # Setup fzf
 # ---------
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --no-ignore'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 
 if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
