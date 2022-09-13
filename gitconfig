@@ -58,3 +58,5 @@
   ff = only
 [rebase]
   autoStash = true
+[advice]
+	detachedHead = false
