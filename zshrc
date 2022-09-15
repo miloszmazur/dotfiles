@@ -4,7 +4,7 @@ ZSH_THEME="robbyrussell"
 ENABLE_CORRECTION="true"
 
 plugins=(
-    brew cargo copydir dirhistory kubectl python rust
+    brew copypath dirhistory kubectl python rust
     tmux jira docker fd fzf npm ripgrep ssh-agent
     yarn
 )
@@ -14,9 +14,10 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export PATH="/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.rvm/gems/ruby-2.1.2/bin:$HOME/.rvm/gems/ruby-2.1.2@global/bin:$HOME/.rvm/rubies/ruby-2.1.2/bin:$HOME/.rvm/bin:/usr/local/texlive/2015/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-getopt/bin:$PATH"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-getopt/bin:$HOME/.local/bin:$PATH"
 export TMUX_TMPDIR=~/.tmux_sessions
 
+alias ls="lsd"
 alias ic="ibmcloud"
 alias kn="kubens"
 alias kx="kubectx"
@@ -26,8 +27,9 @@ alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
 alias cr="cargo run"
 alias icloud=" ~/Library/Mobile\ Documents/com~apple~CloudDocs/"
 alias cat="bat"
-alias res-work="displayplacer \"id:A3A511FA-8117-37A9-D510-25AB0C8A1153 res:3840x1600 hz:30 color_depth:4 scaling:off origin:(0,0) degree:0\""
-alias res-gaming="displayplacer \"id:A3A511FA-8117-37A9-D510-25AB0C8A1153 res:1920x1080 hz:60 color_depth:4 scaling:off origin:(0,0) degree:0\""
+alias readlink="greadlink"
+
+export LS_COLORS='di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
@@ -53,3 +55,10 @@ fi
 # Key bindings
 # ------------
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+
+# pyenv
+# ------------
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
