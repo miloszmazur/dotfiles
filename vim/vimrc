@@ -171,18 +171,23 @@ Plug 'habamax/vim-asciidoctor'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sheerun/vim-polyglot'
-
 " colors
 Plug 'AlessandroYorba/Alduin'
 Plug 'AlessandroYorba/Despacio'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'fcpg/vim-farout'
 Plug 'morhetz/gruvbox'
+Plug 'rebelot/kanagawa.nvim'
 call plug#end()
 
 " colorschemes!
-set bg=dark
-colorscheme gruvbox
+" set bg=dark
+let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
 
 lua << EOF
 require'nvim-tree'.setup()
+require("catppuccin").setup()
 EOF
+
+colorscheme kanagawa
+
