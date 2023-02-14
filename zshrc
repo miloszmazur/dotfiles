@@ -17,11 +17,14 @@ export LC_ALL=en_US.UTF-8
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-getopt/bin:$HOME/.local/bin:$PATH"
 export TMUX_TMPDIR=~/.tmux_sessions
 
+alias v="nvim"
+alias vimdiff="nvim -d"
 alias ls="lsd"
 alias ic="ibmcloud"
 alias kn="kubens"
 alias kx="kubectx"
 alias vim="nvim"
+alias history="history -f"
 alias freespace="diskutil info /dev/disk1s1 | rg \"Volume Free Space\""
 alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
 alias cr="cargo run"

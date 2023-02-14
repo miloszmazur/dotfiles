@@ -51,6 +51,12 @@ nnoremap <leader>v :vnew<CR>
 "insert a timestamp in default date format
 nnoremap <leader>dt :put =strftime('%c')<CR>
 
+" terminal mappings
+tnoremap <C-h> <C-\><C-N><C-w>h
+tnoremap <C-j> <C-\><C-N><C-w>j
+tnoremap <C-k> <C-\><C-N><C-w>k
+tnoremap <C-l> <C-\><C-N><C-w>l
+
 " Simple re-format for minified Javascript
 command! UnMinify call UnMinify()
 function! UnMinify()
@@ -94,8 +100,8 @@ inoremap <silent><expr> <TAB>
   \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
-  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
+"   \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -141,6 +147,16 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" debugger
+
+nmap <Leader>dbt :lua require('dap').toggle_breakpoint()<CR>
+
+nmap <Leader>dsc :lua require('dap').continue()<CR>
+nmap <Leader>dsv :lua require('dap').step_over()<CR>
+nmap <Leader>dsi :lua require('dap').step_into()<CR>
+nmap <Leader>dso :lua require('dap').step_out()<CR>
+nmap <Leader>di :lua require('dapui').toggle()<CR>
+
 
 augroup filetype_jsx
     autocmd!
@@ -171,6 +187,9 @@ Plug 'habamax/vim-asciidoctor'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'sheerun/vim-polyglot'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'mfussenegger/nvim-dap-python'
 " colors
 Plug 'AlessandroYorba/Alduin'
 Plug 'AlessandroYorba/Despacio'
@@ -187,6 +206,8 @@ let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
 lua << EOF
 require'nvim-tree'.setup()
 require("catppuccin").setup()
+require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+require('dap-python').test_runner = 'pytest'
 vim.o.ch = 0
 EOF
 

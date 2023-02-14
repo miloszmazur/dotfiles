@@ -59,4 +59,6 @@
 [rebase]
   autoStash = true
 [advice]
-	detachedHead = false
+  detachedHead = false
+[checkout]
+  defaultRemote=origin
