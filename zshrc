@@ -17,13 +17,14 @@ export LC_ALL=en_US.UTF-8
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-getopt/bin:$HOME/.local/bin:$PATH"
 export TMUX_TMPDIR=~/.tmux_sessions
 
-alias v="nvim"
-alias vimdiff="nvim -d"
+alias g="git"
 alias ls="lsd"
 alias ic="ibmcloud"
 alias kn="kubens"
 alias kx="kubectx"
+alias v="nvim"
 alias vim="nvim"
+alias vimdiff="nvim -d"
 alias history="history -f"
 alias freespace="diskutil info /dev/disk1s1 | rg \"Volume Free Space\""
 alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
@@ -42,7 +43,6 @@ fi
 
 # Setup fzf
 # ---------
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --no-ignore'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
@@ -57,7 +57,7 @@ fi
 
 # Key bindings
 # ------------
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/key-bindings.zsh" 2> /dev/null
 
 # pyenv
 # ------------
@@ -65,3 +65,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
