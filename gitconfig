@@ -8,7 +8,7 @@
   br = branch
   pom = push origin master
   acm =  !git add -A . && git commit -m
-  ac =  !git add -A . && git commit
+  ac =  !git add -u . && git commit
   count   = !git shortlog -sn
   dump = cat-file -p
   fl = log -u
