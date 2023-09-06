@@ -1,7 +1,7 @@
 local opt = vim.opt
 vim.g.mapleader = " "
 
-opt.clipboard="unnamedplus"
+opt.clipboard = "unnamedplus"
 
 opt.number = true
 opt.relativenumber = true
@@ -31,6 +31,7 @@ opt.smartcase = true
 
 opt.mouse = "a"
 
+opt.signcolumn = "number"
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -52,4 +53,3 @@ require("remaps")
 -- status
 -- formatters
 -- that thing to highlight yank
-

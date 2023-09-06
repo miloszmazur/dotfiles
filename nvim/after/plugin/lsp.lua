@@ -1,14 +1,15 @@
 local lsp = require('lsp-zero').preset("recommended")
 
 lsp.ensure_installed({
-	'tsserver',
-	'pyright',
-	'eslint',
-	'lua_ls'
+  'tsserver',
+  'pyright',
+  'eslint',
+  'lua_ls'
 })
 
 lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
+  lsp.default_keymaps({ buffer = bufnr })
+  vim.keymap.set({ 'n', 'x' }, '<leader>f', '<cmd>lua vim.lsp.buf.format({async = true})<cr>')
 end)
 
 -- (Optional) Configure lua language server for neovim
@@ -25,9 +26,9 @@ cmp.setup({
     ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
   },
   sources = {
-	  {name = 'nvim_lsp'},
-	  {name = 'buffer'},
-	  {name = 'path'},
-	  {name = 'cpm_tabnine'},
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+    { name = 'cpm_tabnine' },
   }
 })
