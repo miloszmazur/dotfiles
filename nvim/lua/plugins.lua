@@ -30,5 +30,7 @@ return {
   { 'tzachar/cmp-tabnine', build = './install.sh' },
   {'christoomey/vim-tmux-navigator'},
   {'junegunn/vim-slash'},
-
+  { 'numToStr/Comment.nvim', lazy = false , config = function()
+        require('Comment').setup()
+    end}
 }
