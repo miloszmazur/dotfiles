@@ -26,6 +26,8 @@ opt.undofile = true
 
 opt.incsearch = true
 opt.hlsearch = true
+opt.ignorecase = true
+opt.smartcase = true
 
 opt.mouse = "a"
 
