@@ -77,15 +77,15 @@ nnoremap <silent> <Leader>b :Buffers<Cr>
 nnoremap <silent> <Leader>h :History<Cr>
 nnoremap <silent> <Leader>l :Lines<Cr>
 
-" coc test
 let g:coc_global_extensions = [
 \  'coc-css',
+\  'coc-diagnostic',
 \  'coc-eslint',
-\  'coc-jedi',
 \  'coc-json',
 \  'coc-markdownlint',
 \  'coc-marketplace',
 \  'coc-prettier',
+\  'coc-pyright',
 \  'coc-sh',
 \  'coc-swagger',
 \  'coc-tabnine',
@@ -167,16 +167,27 @@ let g:polyglot_disabled = ['javascriptreact']
 
 nnoremap <C-n> :NvimTreeToggle<CR>
 
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 call plug#begin('~/.vim/plugged')
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'bling/vim-airline'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'habamax/vim-asciidoctor'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'jlanzarotta/bufexplorer'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-slash'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
