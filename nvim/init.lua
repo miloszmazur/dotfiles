@@ -15,7 +15,8 @@ opt.shiftwidth = 2
 opt.expandtab = true
 opt.smartindent = true
 
-opt.showcmd = true
+opt.cmdheight = 0
+
 opt.cursorline = true
 
 opt.wrap = false
@@ -32,6 +33,7 @@ opt.smartcase = true
 opt.mouse = "a"
 
 opt.signcolumn = "number"
+
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
