@@ -15,7 +15,7 @@ set laststatus=2 " make file status etc. always visible
 set cursorline
 set smartindent
 set ignorecase
-set scrolloff=8
+set scrolloff=3
 set expandtab
 set t_Co=256
 set clipboard^=unnamed
@@ -84,13 +84,16 @@ let g:coc_global_extensions = [
 \  'coc-json',
 \  'coc-markdownlint',
 \  'coc-marketplace',
+\  'coc-python',
 \  'coc-prettier',
 \  'coc-pyright',
 \  'coc-sh',
 \  'coc-swagger',
 \  'coc-tabnine',
+\  'coc-prettier',
 \  'coc-tsserver',
 \  'coc-yaml',
+\  'coc-rust-analyzer',
 \]
 
 " Insert <tab> when previous text is space, refresh completion if not.
@@ -214,6 +217,9 @@ call plug#end()
 " set bg=dark
 let g:catppuccin_flavour = "macchiato" " latte, frappe, macchiato, mocha
 
+let g:coc_filetype_map = {
+\ 'javascript': 'javascriptreact',
+\ }
 lua << EOF
 require'nvim-tree'.setup()
 require("catppuccin").setup()
