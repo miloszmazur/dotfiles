@@ -5,8 +5,7 @@ ENABLE_CORRECTION="true"
 
 plugins=(
     brew copypath dirhistory kubectl python rust
-    tmux jira docker fd fzf npm ripgrep ssh-agent
-    yarn
+    tmux jira docker fd fzf npm ripgrep ssh-agent yarn
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -26,6 +25,7 @@ alias v="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 alias history="history -f"
+alias k="kubectl"
 alias freespace="diskutil info /dev/disk1s1 | rg \"Volume Free Space\""
 alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
 alias cr="cargo run"
