@@ -67,3 +67,10 @@ eval "$(pyenv init -)"
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# bun completions
+[ -s "/Users/milosz.mazur/.bun/_bun" ] && source "/Users/milosz.mazur/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

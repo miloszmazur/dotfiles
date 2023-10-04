@@ -10,6 +10,7 @@ lsp.ensure_installed({
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
   vim.keymap.set({ 'n', 'x' }, '<leader>f', '<cmd>lua vim.lsp.buf.format({async = true})<cr>')
+  vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>')
 end)
 
 -- (Optional) Configure lua language server for neovim

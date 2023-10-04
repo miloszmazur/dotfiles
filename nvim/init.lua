@@ -24,6 +24,7 @@ opt.scrolloff = 8
 
 opt.swapfile = false
 opt.undofile = true
+opt.hidden = true
 
 opt.incsearch = true
 opt.hlsearch = true

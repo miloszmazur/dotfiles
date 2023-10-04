@@ -20,6 +20,7 @@
   alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
   out = log --pretty=oneline --abbrev-commit --graph @{u}..
   inc = !git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}
+  lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit
 [color]
   branch = auto
   diff = auto
@@ -35,17 +36,6 @@
 [core]
   excludesfile = ~/.gitexcludes
   editor = nvim
-[merge]
-  tool = p4mergetool
-[mergetool "p4mergetool"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
-  trustExitCode = false
-[mergetool]
-  keepBackup = false
-[diff]
-  tool = p4mergetool
-[difftool "p4mergetool"]
-  cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge "\"$REMOTE\"" "\"$LOCAL\""
 [credential]
   helper = osxkeychain
 [init]
@@ -62,3 +52,11 @@
   detachedHead = false
 [checkout]
   defaultRemote=origin
+[merge]
+	tool = fugitive
+	conflictstyle = diff3
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "fugitive"]
+	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
