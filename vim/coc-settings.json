@@ -1,7 +1,29 @@
 {
-        "python.formatting.blackPath": "/usr/local/bin/black",
-        "python.formatting.provider": "black",
-        "python.jediEnabled": true,
-        "python.jediPath": "/usr/local/lib/python3.9/site-packages",
-        "suggest.timeout": 500
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    "shfmt": {
+      "command": "shfmt",
+      "args": ["-i", "2", "-bn", "-ci", "-sr"]
+    }
+  },
+  "languageserver": {
+    "terraform": {
+      "command": "terraform-ls",
+      "args": ["serve"],
+      "filetypes": ["terraform", "tf"],
+      "initializationOptions": {},
+      "settings": {}
+    }
+  },
+  "suggest.enablePreselect": false,
+  "suggest.noselect": true,
+  "suggest.timeout": 500,
+  "python.formatting.blackPath": "/Users/milosz.mazur/Library/Python/3.9/bin/black",
+  "python.formatting.provider": "black",
+  "pyright.enable": false
 }
