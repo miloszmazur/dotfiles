@@ -75,3 +75,19 @@ eval "$(pyenv init -)"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+# Bind Ctrl-F to fzf completion for the ~/code directory
+fzf-codedir-completion-widget() {
+  local selected_dir=$(fd . ~/code --type d | fzf --height 100% --layout reverse --prompt "code> ")
+  if [[ -n $selected_dir ]]; then
+    eval "cd '$selected_dir'"
+    print -s "cd '$selected_dir'"
+    # Clear the BUFFER
+    BUFFER=""
+    zle reset-prompt
+  fi
+}
+
+zle -N fzf-codedir-completion-widget
+bindkey '^F' fzf-codedir-completion-widget
