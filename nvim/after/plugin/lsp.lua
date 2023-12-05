@@ -25,6 +25,7 @@ cmp.setup({
   mapping = {
     ['<Tab>'] = cmp_action.luasnip_supertab(),
     ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = {
     { name = 'nvim_lsp' },
