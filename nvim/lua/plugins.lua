@@ -26,9 +26,11 @@ return {
       { 'L3MON4D3/LuaSnip' },
       { "hrsh7th/cmp-nvim-lua" } }
   },
-  { 'tzachar/cmp-tabnine',           build = './install.sh' },
+  { 'tzachar/cmp-tabnine',                         build = './install.sh' },
   { 'christoomey/vim-tmux-navigator' },
   { 'junegunn/vim-slash' },
-  { 'numToStr/Comment.nvim',         lazy = false,          config = function() require('Comment').setup() end },
-  { 'towolf/vim-helm' }
+  { 'numToStr/Comment.nvim',                       lazy = false,                                        config = function()
+    require('Comment').setup() end },
+  { 'towolf/vim-helm' },
+  { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter/nvim-treesitter" } }
 }

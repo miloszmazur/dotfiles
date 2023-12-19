@@ -19,3 +19,32 @@ require 'nvim-treesitter.configs'.setup {
     enable = true
   }
 }
+
+require 'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@conditional.outer",
+        ["ic"] = "@conditional.inner",
+        ["is"] = "@assignment.inner",
+        ["as"] = "@assignment.lhs",
+        ["aC"] = "@class.outer",
+        ["iC"] = "@class.inner",
+      },
+      include_surrounding_whitespace = false,
+    },
+  },
+  swap = {
+    enable = true,
+    swap_next = {
+      ["<leader>a"] = "@parameter.inner",
+    },
+    swap_previous = {
+      ["<leader>A"] = "@parameter.inner",
+    },
+  },
+}
