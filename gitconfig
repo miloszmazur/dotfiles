@@ -2,8 +2,8 @@
   name = Miłosz Mazur
   email = milosz.mazur@hotmail.com
 [alias]
-  ac =  !git add -A . && git commit
-  acm =  !git add -A . && git commit -m
+  ac =  !git add -u . && git commit
+  acm =  !git add -u . && git commit -m
   alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
   br = branch
   ci = commit
