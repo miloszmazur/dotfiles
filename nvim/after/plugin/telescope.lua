@@ -19,5 +19,6 @@ require('telescope').setup {
         "--exclude", ".git/"
       },
     }
-  }
+  },
 }
+require("telescope").load_extension("ui-select")

@@ -2,7 +2,6 @@ local lsp = require('lsp-zero').preset("recommended")
 
 lsp.ensure_installed({
   'tsserver',
-  'pyright',
   'eslint',
   'lua_ls'
 })
@@ -15,6 +14,26 @@ end)
 
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+-- to install pylsp plugins run:
+-- cd ~/.local/share/nvim/mason/packages/python-lsp-server
+-- source venv/bin/activate
+-- pip install <package>
+require('lspconfig').pylsp.setup({
+  setings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          maxLineLength = 100,
+        },
+        black = { enabled = true, },
+        rope_autoimport = {
+          enabled = true
+        }
+      }
+    }
+  }
+})
 
 lsp.setup()
 
