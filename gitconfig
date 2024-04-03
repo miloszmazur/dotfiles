@@ -1,6 +1,6 @@
 [user]
   name = Miłosz Mazur
-  email = milosz.mazur@hotmail.com
+  email = milosz.mazur@jeppesen.com
 [alias]
   ac =  !git add -u . && git commit
   acm =  !git add -u . && git commit -m

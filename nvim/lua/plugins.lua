@@ -40,5 +40,13 @@ return {
   },
   { 'towolf/vim-helm' },
   { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter/nvim-treesitter" } },
+  {
+    "David-Kunz/gen.nvim",
+    opts = {
+      show_prompt = false, -- Shows the Prompt submitted to Ollama.
+      display_mode = "split", -- The display mode. Can be "float" or "split".
+
+    }
+  },
 
 }
