@@ -18,7 +18,7 @@ return {
   { 'tpope/vim-unimpaired' },
   {
     'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    branch = 'v3.x',
     dependencies = {
       { 'neovim/nvim-lspconfig' },
       { 'williamboman/mason.nvim' },

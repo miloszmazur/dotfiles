@@ -1,10 +1,5 @@
 local lsp = require('lsp-zero').preset("recommended")
-
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'lua_ls'
-})
+require("mason").setup()
 
 lsp.on_attach(function(client, bufnr)
   lsp.default_keymaps({ buffer = bufnr })
@@ -14,26 +9,43 @@ end)
 
 -- (Optional) Configure lua language server for neovim
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+require('lspconfig').ruff_lsp.setup {
+  init_options = {
+    settings = {
+      args = {},
+    }
+  }
+}
+
+require('lspconfig').marksman.setup {}
 
 -- to install pylsp plugins run:
 -- cd ~/.local/share/nvim/mason/packages/python-lsp-server
 -- source venv/bin/activate
 -- pip install <package>
-require('lspconfig').pylsp.setup({
-  setings = {
+require('lspconfig').pylsp.setup {
+  settings = {
     pylsp = {
       plugins = {
-        pycodestyle = {
-          maxLineLength = 100,
+        ruff = {
+          enabled = false
         },
-        black = { enabled = true, },
-        rope_autoimport = {
-          enabled = true
+        pycodestyle = {
+          enabled = false
+        },
+        pyflakes = {
+          enabled = false
+        },
+        mccabe = {
+          enabled = false
         }
       }
     }
-  }
-})
+  },
+}
+
+require('lspconfig').rust_analyzer.setup {}
+require('lspconfig').taplo.setup {}
 
 lsp.setup()
 
