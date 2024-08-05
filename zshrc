@@ -11,9 +11,10 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 export EDITOR='nvim'
+export TERM=xterm-256color
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-getopt/bin:$HOME/.local/bin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-getopt/bin:$HOME/.local/bin:$PATH"
 export TMUX_TMPDIR=~/.tmux_sessions
 
 alias g="git"
