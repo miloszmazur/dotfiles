@@ -2,26 +2,23 @@
   name = Miłosz Mazur
   email = milosz.mazur@jeppesen.com
 [alias]
-  ac =  !git add -u . && git commit
-  acm =  !git add -u . && git commit -m
-  alias = ! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /
-  br = branch
+  ac =  "!git add -u . && git commit"
+  acm =  "!git add -u . && git commit -m"
+  alias = "! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
+  br="!git checkout $(git branch --all | fzf)"
   ci = commit
   co = checkout
-  count   = !git shortlog -sn
-  dump = cat-file -p
-  fl = log -u
-  glog = log --graph --oneline --decorate --all --pretty
-  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --decorate
-  inc = !git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-  lt = log --graph --oneline --decorate --all
-  out = log --pretty=oneline --abbrev-commit --graph @{u}..
-  inc = !git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}
-  lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit
-  pom = push origin master
-  st = status
+  st = "status"
+  out = "log --pretty=oneline --abbrev-commit --graph @{u}.."
+  inc = "!git fetch && git log --pretty=oneline --abbrev-commit --graph ..@{u}"
+  fl = "log -u"
+  glog = "log --graph --oneline --decorate --all --pretty"
+  hist = "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short --decorate"
+  ll = "log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat"
+  ls = "log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate"
+  lt = "log --graph --oneline --decorate --all"
+  lg = "log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit"
+  count   = "!git shortlog -sn"
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -39,6 +36,7 @@
   defaultBranch = main
 [push]
   default = simple
+  autosetupremote = true
 [pull]
   rebase = true
   ff = only
