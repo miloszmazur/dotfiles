@@ -93,3 +93,5 @@ fzf-codedir-completion-widget() {
 
 zle -N fzf-codedir-completion-widget
 bindkey '^F' fzf-codedir-completion-widget
+
+alias claude="$HOME/.claude/local/claude"
