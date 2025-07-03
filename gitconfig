@@ -30,10 +30,13 @@
 [core]
   excludesfile = ~/.gitexcludes
   editor = nvim
+  pager = delta
 [credential]
   helper = osxkeychain
 [init]
   defaultBranch = main
+[interactive]
+  diffFilter = delta --color-only
 [push]
   default = simple
   autosetupremote = true
@@ -54,3 +57,7 @@
 	keepBackup = false
 [mergetool "fugitive"]
 	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+[delta]
+  navigate = true
+  dark = true
+

@@ -1,6 +1,11 @@
 local opt = vim.opt
 vim.g.mapleader = " "
 
+if vim.g.vscode then
+  cmdheight = 1
+  return
+end
+
 opt.clipboard = "unnamedplus"
 
 opt.number = true
