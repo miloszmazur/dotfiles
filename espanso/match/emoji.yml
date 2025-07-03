@@ -1,5 +1,5 @@
 matches:
-  - trigger: "::fire:"
+  - trigger: "::fr"
     replace: "🔥"
   - trigger: "::heart"
     replace: "❤️"
