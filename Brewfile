@@ -1,5 +1,4 @@
 tap "derailed/k9s"
-tap "homebrew/services"
 tap "oven-sh/bun"
 brew "bat"
 brew "coreutils"
