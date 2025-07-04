@@ -13,6 +13,16 @@ else
     echo "oh-my-zsh already installed, skipping"
 fi
 
+
+if ! command -v brew > /dev/null 2>&1; then
+    echo "installing homebrew..."
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    echo "homebrew installed"
+else
+    echo "homebrew already installed, skipping"
+fi
+
 echo "creating $old_dir for backup of any existing dotfiles in ~"
 mkdir -p $old_dir
 echo "Creating ~/.config if it doesn't exist"
