@@ -62,13 +62,6 @@ fi
 # ------------
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/key-bindings.zsh" 2> /dev/null
 
-# pyenv
-# ------------
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # bun completions
