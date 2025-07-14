@@ -24,6 +24,7 @@ brew "watch"
 brew "wget"
 brew "yazi"
 brew "yq"
+brew "zsh-syntax-highlighting
 cask "docker-desktop"
 cask "espanso"
 cask "font-symbols-only-nerd-font"

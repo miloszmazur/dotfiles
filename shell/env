@@ -1,0 +1,12 @@
+export EDITOR='nvim'
+
+export PATH="/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-getopt/bin:$HOME/.local/bin:$PATH"
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
+export TMUX_TMPDIR=~/.tmux_sessions
+
+export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --no-ignore'
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND

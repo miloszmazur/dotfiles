@@ -1,75 +1,40 @@
-export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+[ -f "$HOME/.config/shell/env" ] && source "$HOME/.config/shell/env"
+[ -f "$HOME/.config/shell/alias" ] && source "$HOME/.config/shell/alias"
 
-ENABLE_CORRECTION="true"
+zmodload zsh/complist
+autoload -U compinit && compinit
+autoload -U colors && colors
+autoload -U vcs_info
 
-plugins=(
-    brew copypath dirhistory kubectl python rust
-    tmux jira docker fzf npm ssh-agent yarn
-)
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\;33
 
-source $ZSH/oh-my-zsh.sh
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git:*' formats ' (%b)'
+zstyle ':vcs_info:git:*' actionformats ' (%b|%a)'
 
-export EDITOR='nvim'
-# export TERM=xterm-256color
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export PATH="/opt/homebrew/bin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/include:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/opt/gnu-getopt/bin:$HOME/.local/bin:$PATH"
-export LC_ALL=en_US.UTF-8
-export TMUX_TMPDIR=~/.tmux_sessions
+precmd() {
+    vcs_info
+}
 
-alias g="git"
-alias ls="lsd"
-alias ic="ibmcloud"
-alias kn="kubens"
-alias kx="kubectx"
-alias v="nvim"
-alias vim="nvim"
-alias vimdiff="nvim -d"
-alias history="history -f"
-alias k="kubectl"
-alias freespace="diskutil info /dev/disk1s1 | rg \"Volume Free Space\""
-alias iprenew="sudo ifconfig en0 down ; sudo ifconfig en0 up"
-alias cr="cargo run"
-alias icloud=" ~/Library/Mobile\ Documents/com~apple~CloudDocs/"
-alias cat="bat"
-alias readlink="greadlink"
-alias rg="rg -S"
+setopt append_history inc_append_history share_history
+setopt auto_menu menu_complete
+setopt autocd
+setopt auto_param_slash
+setopt globdots
+setopt extended_glob
+unsetopt prompt_sp
 
-export LS_COLORS='di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+HISTSIZE=1000000
+SAVEHIST=1000000
+HISTFILE="$HOME/.cache/zsh_history"
+HISTCONTROL=ignoreboth
 
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+setopt PROMPT_SUBST
+PROMPT='%{$fg_bold[cyan]%}%c%{$fg[red]%}${vcs_info_msg_0_}%{$reset_color%} %(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})❯%{$reset_color%} '
 
-if [ type rustup &> /dev/null > /dev/null ]; then
-    export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/src
-fi
-
-# Setup fzf
-# ---------
-export FZF_DEFAULT_COMMAND='fd --type f --follow --hidden --no-ignore'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-
-
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-fi
-
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
-
-# Key bindings
-# ------------
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/key-bindings.zsh" 2> /dev/null
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# bun completions
-[ -s "/Users/milosz.mazur/.bun/_bun" ] && source "/Users/milosz.mazur/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+bindkey -e
 
 
 # Bind Ctrl-F to fzf completion for the ~/code directory
@@ -78,7 +43,6 @@ fzf-codedir-completion-widget() {
   if [[ -n $selected_dir ]]; then
     eval "cd '$selected_dir'"
     print -s "cd '$selected_dir'"
-    # Clear the BUFFER
     BUFFER=""
     zle reset-prompt
   fi
@@ -87,4 +51,7 @@ fzf-codedir-completion-widget() {
 zle -N fzf-codedir-completion-widget
 bindkey '^F' fzf-codedir-completion-widget
 
-alias claude="$HOME/.claude/local/claude"
+command -v fzf >/dev/null && . <(fzf --zsh)
+command -v tfctl >/dev/null && . <(tfctl completion zsh)
+
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -1,18 +1,9 @@
 dir=~/dotfiles
-old_dir=~/dotfiles_old 
+old_dir=~/old-dotfiles
 
 home_files="zshrc gitconfig gitexcludes vimrc"
 
-config_files="nvim lsd espanso tmux ghostty"
-
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "installing oh-my-zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    echo "oh-my-zsh installed"
-else
-    echo "oh-my-zsh already installed, skipping"
-fi
-
+config_files="nvim lsd espanso tmux ghostty shell"
 
 if ! command -v brew > /dev/null 2>&1; then
     echo "installing homebrew..."
