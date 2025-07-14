@@ -9,6 +9,7 @@ brew "fzf"
 brew "git-delta"
 brew "hyperfine"
 brew "jq"
+brew "karabiner
 brew "kubectx"
 brew "kubernetes-cli"
 brew "lsd"
