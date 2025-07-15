@@ -36,7 +36,6 @@ PROMPT='%{$fg_bold[cyan]%}%c%{$fg[red]%}${vcs_info_msg_0_}%{$reset_color%} %(?.%
 
 bindkey -e
 
-
 # Bind Ctrl-F to fzf completion for the ~/code directory
 fzf-codedir-completion-widget() {
   local selected_dir=$(fd . ~/code --type d | fzf --height 100% --layout reverse --prompt "code> ")
