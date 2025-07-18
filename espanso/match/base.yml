@@ -17,21 +17,28 @@ matches:
   # But matches can also be dynamic:
 
   # Print the current date
-  - trigger: ":date"
+  - trigger: ";date"
     replace: "{{mydate}}"
     vars:
       - name: mydate
         type: date
         params:
-          format: "%m/%d/%Y"
+          format: "%Y-%M-%d"
 
   # Print the output of a shell command
-  - trigger: ":shell"
+  - trigger: ";shell"
     replace: "{{output}}"
     vars:
       - name: output
         type: shell
         params:
           cmd: "echo 'Hello from your shell'"
+  - trigger: ";ts"
+    replace: "{{timestamp}}"    
+    vars:
+      - name: timestamp
+        type: date
+        params:
+          format: "%H:%M"
 
   # And much more! For more information, visit the docs: https://espanso.org/docs/

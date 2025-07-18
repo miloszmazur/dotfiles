@@ -28,7 +28,6 @@ return {
       { 'L3MON4D3/LuaSnip' },
       { "hrsh7th/cmp-nvim-lua" } }
   },
-  { 'tzachar/cmp-tabnine',           build = './install.sh' },
   { 'christoomey/vim-tmux-navigator' },
   { 'junegunn/vim-slash' },
   {

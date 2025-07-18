@@ -62,6 +62,5 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'path' },
-    { name = 'cpm_tabnine' },
   }
 })
