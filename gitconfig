@@ -19,6 +19,8 @@
   lt = "log --graph --oneline --decorate --all"
   lg = "log --graph --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --abbrev-commit"
   count   = "!git shortlog -sn"
+[branch]
+  sort = -committerdate
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -27,6 +29,10 @@
   added = yellow
   changed = green
   untracked = cyan
+[column]
+  ui = auto
+[commit]
+  verbose = true
 [core]
   excludesfile = ~/.gitexcludes
   editor = nvim
