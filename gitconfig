@@ -39,25 +39,41 @@
   pager = delta
 [credential]
   helper = osxkeychain
+[diff]
+  algorithm = histogram
+  mnemonicPrefix = true
+  renames = true
+  colorMoved = plain
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[help]
+  autocorrect = prompt
 [init]
   defaultBranch = main
 [interactive]
   diffFilter = delta --color-only
 [push]
-  default = simple
   autosetupremote = true
+  followTags = true
 [pull]
   rebase = true
   ff = only
 [rebase]
   autoStash = true
+  autoSquash = true
+  updateRefs = true
+[rerere]
+  enabled = true
+  autoupdate = true
 [advice]
   detachedHead = false
 [checkout]
   defaultRemote=origin
 [merge]
 	tool = fugitive
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [mergetool]
 	prompt = false
 	keepBackup = false
@@ -66,4 +82,5 @@
 [delta]
   navigate = true
   dark = true
-
+[tag]
+  sort = version:refname
