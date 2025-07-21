@@ -1,6 +1,6 @@
 matches:
-  - trigger: ":ilo"
+  - trigger: ";ilo"
     replace: "in lieu of"
-  - trigger: ":iso"
+  - trigger: ";iso"
     replace: "instead of"
 
