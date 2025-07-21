@@ -1,29 +1,35 @@
-local lsp = require('lsp-zero').preset("recommended")
-require("mason").setup()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspconfig = require('lspconfig')
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-  vim.keymap.set({ 'n', 'x' }, '<leader>f', '<cmd>lua vim.lsp.buf.format({async = true})<cr>')
-  vim.keymap.set({ 'n', 'v' }, '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-end)
+lspconfig['ruff'].setup { capabilities = capabilities }
+lspconfig['marksman'].setup { capabilities = capabilities }
+lspconfig['rust_analyzer'].setup { capabilities = capabilities }
+lspconfig['taplo'].setup { capabilities = capabilities }
 
--- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-require('lspconfig').ruff.setup {
-  init_options = {
-    settings = {
-      args = {},
-    }
-  }
-}
-
-require('lspconfig').marksman.setup {}
-
+vim.lsp.config('lua_ls', {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {
+          'vim',
+        },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+})
 -- to install pylsp plugins run:
 -- cd ~/.local/share/nvim/mason/packages/python-lsp-server
 -- source venv/bin/activate
 -- pip install <package>
-require('lspconfig').pylsp.setup {
+vim.lsp.config('pylsp', {
+  capabilities = capabilities,
   settings = {
     pylsp = {
       plugins = {
@@ -44,26 +50,12 @@ require('lspconfig').pylsp.setup {
         }
       }
     }
-  },
-}
-
-require('lspconfig').rust_analyzer.setup {}
-require('lspconfig').taplo.setup {}
-
-lsp.setup()
-
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-
-cmp.setup({
-  mapping = {
-    ['<Tab>'] = cmp_action.luasnip_supertab(),
-    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
-    ['<CR>'] = cmp.mapping.confirm({ select = false }),
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
-    { name = 'path' },
   }
 })
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('ruff')
+vim.lsp.enable('marksman')
+vim.lsp.enable('pylsp')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('taplo')
+vim.diagnostic.config({ float = { source = 'if_many' }, virtual_text = true })
