@@ -27,8 +27,6 @@
   added = yellow
   changed = green
   untracked = cyan
-[column]
-  ui = auto
 [commit]
   verbose = true
 [core]
