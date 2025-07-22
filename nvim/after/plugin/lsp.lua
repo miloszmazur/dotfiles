@@ -5,6 +5,7 @@ lspconfig['ruff'].setup { capabilities = capabilities }
 lspconfig['marksman'].setup { capabilities = capabilities }
 lspconfig['rust_analyzer'].setup { capabilities = capabilities }
 lspconfig['taplo'].setup { capabilities = capabilities }
+lspconfig['lua_ls'].setup { capabilities = capabilities }
 
 vim.lsp.config('lua_ls', {
   capabilities = capabilities,
@@ -58,4 +59,5 @@ vim.lsp.enable('marksman')
 vim.lsp.enable('pylsp')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('taplo')
+vim.lsp.enable('helm_ls')
 vim.diagnostic.config({ float = { source = 'if_many' }, virtual_text = true })
