@@ -52,5 +52,6 @@ bindkey '^F' fzf-codedir-completion-widget
 
 command -v fzf >/dev/null && . <(fzf --zsh)
 command -v tfctl >/dev/null && . <(tfctl completion zsh)
+command -v argocd >/dev/null && . <(argocd completion zsh)
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
