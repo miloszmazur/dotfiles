@@ -54,4 +54,7 @@ command -v fzf >/dev/null && . <(fzf --zsh)
 command -v tfctl >/dev/null && . <(tfctl completion zsh)
 command -v argocd >/dev/null && . <(argocd completion zsh)
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || true
+[[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting ]] && . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting || true
+[[ -f /home/tyr/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/tyr/.config/.dart-cli-completion/zsh-config.zsh || true
+

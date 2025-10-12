@@ -1,6 +1,6 @@
 [user]
   name = Miłosz Mazur
-  email = milosz.mazur@jeppesen.com
+  email = milosz.mazur@hotmail.com
 [alias]
   alias = "! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
   ac =  "!git add -u . && git commit"
