@@ -1,0 +1,74 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 20,
+  "margin-bottom":0,
+  "margin-top":0,
+
+  "modules-left": [
+    "hyprland/workspaces",
+    "mpd"
+  ],
+  "modules-center": ["clock"],
+  "modules-right":  [
+    "tray",
+    "wireplumber",
+    "network",
+    "cpu",
+    "memory",
+    "temperature"
+  ],
+  "hyprland/workspaces": {
+    "sort-by-name": true,
+    "on-click": "activate"
+  },
+  "hyprland/window": {
+    "max-length": 200,
+    "separate-outputs": true
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 6
+  },
+  "clock": {
+    "format": "{:%A %H:%M}",
+    "format-alt": "{:%d %B %Y}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "format": {
+        "today": "<span color='#a6e3a1'><b>{}</b></span>"
+      }
+    }
+  },
+  "cpu": {
+    "format": "&#8239;{usage}%",
+    "tooltip": true
+  },
+  "memory": {
+    "interval": 30,
+    "format": " {used:0.2f}GB",
+    "max-length": 10,
+    "tooltip": false,
+    "warning": 70,
+    "critical": 90
+  },
+  "network": {
+    "interval": 2,
+    "format-wifi": " {signalStrength}%",
+    "format-ethernet": "",
+    "format-disconnected": " Disconnected",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "max-length": 20,
+    "min-length": 6,
+    "format-alt": "{essid}",
+  },
+  "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-muted": "󰝟",
+    "format-icons": ["", "", ""],
+    "on-click": "pavucontrol",
+    "tooltip-format": "{node_name}"
+  },
+}

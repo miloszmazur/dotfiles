@@ -1,0 +1,31 @@
+hotreload_theme = true
+force_keyboard_focus = true
+
+[builtins.applications]
+exclude = [
+    "avahi-discover.desktop",
+    "bssh.desktop", 
+    "bvnc.desktop"
+]
+
+[builtins.windows]
+switcher_only = true
+hidden = true
+
+[builtins.clipboard]
+hidden = true
+
+[builtins.commands]
+hidden = true
+
+[builtins.custom_commands]
+hidden = true
+
+[builtins.finder]
+use_fd = true
+cmd_alt = "xdg-open $(dirname ~/%RESULT%)"
+icon = "file"
+name = "Finder"
+preview_images = true
+hidden = false
+prefix = "."
