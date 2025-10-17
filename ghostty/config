@@ -1,2 +1,5 @@
+background-opacity=0.85
 macos-titlebar-style = hidden
 keybind = shift+enter=text:\n
+config-file = "?colors.conf"
+# config-file = /home/tyr/.config/ghostty/colors.conf

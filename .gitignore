@@ -3,5 +3,6 @@ tmux/resurrect
 vim/plugged
 vim/spell
 nvim/spell
+ghostty/colors.conf
 *.log
 *.old
