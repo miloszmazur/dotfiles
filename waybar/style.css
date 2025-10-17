@@ -16,14 +16,12 @@
     /* `otf-font-awesome` is required to be installed for icons */
     border: none;
     font-family: "JetBrainsMono";
-    /* Recommended font sizes: 720p: ~14px, 1080p: ~18px */
     font-size: 14px;
 }
 
 window#waybar {
 
     background-color: rgba(34, 36, 54, 0.6);
-    /* border-bottom: 0px solid rgba(100, 114, 125, 0.5); */
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -60,7 +58,7 @@ window#waybar.hidden {
 }
 
 #workspaces button.urgent {
-    color: red;
+    /* color: red; */
 }
 
 #mode {
@@ -105,11 +103,7 @@ window#waybar.hidden {
 }
 
 #clock {
-    color: #90ee90;
-}
-
-#battery {
-    color: @accent5;
+    color: @fgcolor;
 }
 
 @keyframes blink {
@@ -117,11 +111,6 @@ window#waybar.hidden {
         background-color: #ffffff;
         color: #333333;
     }
-}
-
-#battery.critical:not(.charging) {
-    background-color: @critical;
-    color: @white;
 }
 
 label:focus {
@@ -136,54 +125,28 @@ label:focus {
     color: #86e2d5;
 }
 
-#backlight {
-    color: @accent2;
-}
-
 #network {
-    color: @accent3;
+    color: @accent2;
 }
 
 #network.disconnected {
     color: @alert;
 }
 
-#pulseaudio {
-    color: @accent4;
+#wireplumber {
+    color: @accent3;
 }
 
 #pulseaudio.muted {
     color: #a0a0a0;
 }
 
-#custom-power {
-    color: @accent6;
+#temperature.cpu {
+    color: @accent4;
 }
 
-#custom-waylandvsxorg {
+#temperature.gpu {
     color: @accent5;
-}
-
-#custom-pacman {
-    color: @accent2;
-}
-
-#custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
-}
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
-    color: @accent6;
 }
 
 #temperature.critical {
@@ -192,11 +155,6 @@ label:focus {
 
 #tray {
 
-}
-
-#idle_inhibitor {
-    background-color: #343434;
-    border-radius: 4px;
 }
 
 #mpd {
@@ -212,14 +170,4 @@ label:focus {
     color: #606060;
     margin: 0 1px;
     padding-bottom: 5px;
-}
-
-#custom-wmname {
-    min-width: 36px;
-    font-size: 15px;
-}
-
-#custom-recorder,
-#custom-audiorec {
-    color: #c71585;
 }

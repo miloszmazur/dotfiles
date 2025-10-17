@@ -1,7 +1,7 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 20,
+  "height": 34,
   "margin-bottom":0,
   "margin-top":0,
 
@@ -15,8 +15,9 @@
     "wireplumber",
     "network",
     "cpu",
-    "memory",
-    "temperature"
+    "temperature#cpu",
+    "temperature#gpu",
+    "memory"
   ],
   "hyprland/workspaces": {
     "sort-by-name": true,
@@ -53,6 +54,25 @@
     "warning": 70,
     "critical": 90
   },
+"temperature#cpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "interval": 10,
+		"format-critical": "󰀦 C:{temperatureC}°C",
+		"format": "{icon}C:{temperatureC}°C",
+		"format-icons": [
+			"", "", ""
+		]
+},
+"temperature#gpu": {
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "critical-threshold": 85,
+		"format-critical": "󰀦G:{temperatureC}°C",
+		"format": "{icon}G:{temperatureC}°C",
+		"format-icons": [
+			"", "", ""
+    ]
+},
   "network": {
     "interval": 2,
     "format-wifi": " {signalStrength}%",
@@ -65,9 +85,12 @@
     "format-alt": "{essid}",
   },
   "wireplumber": {
-    "format": "{volume}% {icon}",
-    "format-muted": "󰝟",
-    "format-icons": ["", "", ""],
+    "format": "{icon} {volume}%",
+    "format-muted": "",
+    "format-icons": {
+      "headphones": "",
+      "default": ["", ""]
+    },
     "on-click": "pavucontrol",
     "tooltip-format": "{node_name}"
   },
