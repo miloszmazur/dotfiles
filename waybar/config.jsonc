@@ -43,7 +43,7 @@
     }
   },
   "cpu": {
-    "format": "&#8239;{usage}%",
+    "format": "&#8239; {usage}%",
     "tooltip": true
   },
   "memory": {
@@ -85,7 +85,7 @@
     "format-alt": "{essid}",
   },
   "wireplumber": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}  {volume}%",
     "format-muted": "",
     "format-icons": {
       "headphones": "",
