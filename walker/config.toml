@@ -1,24 +1,11 @@
 hotreload_theme = true
 force_keyboard_focus = true
 
-[builtins.applications]
-exclude = [
-    "avahi-discover.desktop",
-    "bssh.desktop", 
-    "bvnc.desktop"
-]
-
-[builtins.windows]
-switcher_only = true
-hidden = true
-
-[builtins.clipboard]
-hidden = true
-
 [builtins.commands]
 hidden = true
 
-[builtins.custom_commands]
+[builtins.symbols]
+after_copy = ""
 hidden = true
 
 [builtins.finder]
