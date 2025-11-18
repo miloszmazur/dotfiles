@@ -53,11 +53,16 @@ vim.lsp.config('pylsp', {
     }
   }
 })
-vim.lsp.enable('lua_ls')
-vim.lsp.enable('ruff')
-vim.lsp.enable('marksman')
-vim.lsp.enable('pylsp')
-vim.lsp.enable('rust_analyzer')
-vim.lsp.enable('taplo')
-vim.lsp.enable('helm_ls')
+vim.lsp.enable({
+  'lua_ls',
+  'ruff',
+  'marksman',
+  'pylsp',
+  'rust_analyzer',
+  'taplo',
+  'helm_ls'
+})
+
 vim.diagnostic.config({ float = { source = 'if_many' }, virtual_text = true })
+
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)

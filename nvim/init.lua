@@ -39,6 +39,7 @@ opt.smartcase = true
 opt.mouse = "a"
 
 opt.signcolumn = "number"
+opt.winborder = "rounded"
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
