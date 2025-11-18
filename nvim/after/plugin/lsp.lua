@@ -1,11 +1,9 @@
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lspconfig = require('lspconfig')
 
-lspconfig['ruff'].setup { capabilities = capabilities }
-lspconfig['marksman'].setup { capabilities = capabilities }
-lspconfig['rust_analyzer'].setup { capabilities = capabilities }
-lspconfig['taplo'].setup { capabilities = capabilities }
-lspconfig['lua_ls'].setup { capabilities = capabilities }
+vim.lsp.config('ruff', { capabilities = capabilities })
+vim.lsp.config('marksman', { capabilities = capabilities })
+vim.lsp.config('rust_analyzer', { capabilities = capabilities })
+vim.lsp.config('taplo', { capabilities = capabilities })
 
 vim.lsp.config('lua_ls', {
   capabilities = capabilities,
