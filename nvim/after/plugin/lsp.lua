@@ -4,6 +4,8 @@ vim.lsp.config('ruff', { capabilities = capabilities })
 vim.lsp.config('marksman', { capabilities = capabilities })
 vim.lsp.config('rust_analyzer', { capabilities = capabilities })
 vim.lsp.config('taplo', { capabilities = capabilities })
+vim.lsp.config('pyright', { capabilities = capabilities })
+vim.lsp.config('ts_ls', { capabilities = capabilities })
 
 vim.lsp.config('lua_ls', {
   capabilities = capabilities,
@@ -58,9 +60,10 @@ vim.lsp.enable({
   'pylsp',
   'rust_analyzer',
   'taplo',
-  'helm_ls'
+  'helm_ls',
+  'pyright',
+  'ts_ls'
 })
 
 vim.diagnostic.config({ float = { source = 'if_many' }, virtual_text = true })
-
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
