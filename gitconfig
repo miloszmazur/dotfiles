@@ -1,6 +1,6 @@
 [user]
   name = Miłosz Mazur
-  email = milosz.mazur@hotmail.com
+  email = milosz.mazur@jepp.com
 [alias]
   alias = "! git config --get-regexp ^alias\\. | sed -e s/^alias\\.// -e s/\\ /\\ =\\ /"
   ac =  "!git add -u . && git commit"
@@ -74,7 +74,7 @@
 	prompt = false
 	keepBackup = false
 [mergetool "fugitive"]
-	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+	cmd = "nvim -f -c \"Gvdiffsplit!\" \"$MERGED\""
 [delta]
   navigate = true
   dark = true

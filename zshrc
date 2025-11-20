@@ -1,5 +1,7 @@
+zmodload zsh/zprof
 [ -f "$HOME/.config/shell/env" ] && source "$HOME/.config/shell/env"
 [ -f "$HOME/.config/shell/alias" ] && source "$HOME/.config/shell/alias"
+[ -f "$HOME/.config/shell/local" ] && source "$HOME/.config/shell/local"
 
 zmodload zsh/complist
 autoload -U compinit && compinit
@@ -58,3 +60,7 @@ command -v argocd >/dev/null && . <(argocd completion zsh)
 [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting ]] && . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting || true
 [[ -f /home/tyr/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/tyr/.config/.dart-cli-completion/zsh-config.zsh || true
 
+if [[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+zprof | head -10

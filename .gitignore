@@ -1,8 +1,8 @@
 tmux/plugins
 tmux/resurrect
-vim/plugged
 vim/spell
 nvim/spell
+shell/local
 ghostty/colors.conf
 *.log
 *.old
