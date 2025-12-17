@@ -6,6 +6,7 @@ vim.lsp.config('rust_analyzer', { capabilities = capabilities })
 vim.lsp.config('taplo', { capabilities = capabilities })
 vim.lsp.config('pyright', { capabilities = capabilities })
 vim.lsp.config('ts_ls', { capabilities = capabilities })
+vim.lsp.config('pyrefly', { capabilities = capabilities })
 
 vim.lsp.config('lua_ls', {
   capabilities = capabilities,
@@ -62,7 +63,8 @@ vim.lsp.enable({
   'taplo',
   'helm_ls',
   'pyright',
-  'ts_ls'
+  'ts_ls',
+  'pyrefly'
 })
 
 vim.diagnostic.config({ float = { source = 'if_many' }, virtual_text = true })
