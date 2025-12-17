@@ -1,0 +1,9 @@
+matches:
+  - trigger: ";ilo"
+    replace: "in lieu of"
+  - trigger: ";iso"
+    replace: "instead of"
+  - trigger: ";sthp"
+    replace: "Sorry to hear you're having issues with your course"
+  - trihher: ";br"
+    replace: "Best regards,\nMiłosz Mazur"
