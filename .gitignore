@@ -3,6 +3,7 @@ tmux/resurrect
 vim/spell
 nvim/spell
 shell/local
+espanso/match/local.yml
 ghostty/colors.conf
 *.log
 *.old

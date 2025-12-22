@@ -1,4 +1,5 @@
 zmodload zsh/zprof
+
 [ -f "$HOME/.config/shell/env" ] && source "$HOME/.config/shell/env"
 [ -f "$HOME/.config/shell/alias" ] && source "$HOME/.config/shell/alias"
 [ -f "$HOME/.config/shell/local" ] && source "$HOME/.config/shell/local"
