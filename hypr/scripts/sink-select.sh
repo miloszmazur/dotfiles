@@ -3,7 +3,7 @@
 current=$(pactl get-default-sink)
 
 declare -A sinks=(
-    ["alsa_output.usb-Generic_USB_Audio-00.HiFi__Speaker__sink"]="Headphones"
+    ["alsa_output.usb-Generic_USB_Audio-00.HiFi__Headphones__sink"]="Headphones"
     ["alsa_output.pci-0000_01_00.1.hdmi-stereo"]="Speakers"
 )
 
