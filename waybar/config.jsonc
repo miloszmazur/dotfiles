@@ -76,13 +76,14 @@
   "network": {
     "interval": 2,
     "format-wifi": " {signalStrength}%",
+    "format-alt": "{essid}",
     "format-ethernet": "",
     "format-disconnected": " Disconnected",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "max-length": 20,
     "min-length": 6,
-    "format-alt": "{essid}",
+    "on-click": "ghostty -e nmtui"
   },
   "wireplumber": {
     "format": "{icon}   {volume}%",

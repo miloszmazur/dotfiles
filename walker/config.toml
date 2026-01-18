@@ -1,5 +1,6 @@
 hotreload_theme = true
 force_keyboard_focus = true
+hide_quick_activation = true
 
 [builtins.commands]
 hidden = true
@@ -16,3 +17,7 @@ name = "Finder"
 preview_images = true
 hidden = false
 prefix = "."
+
+[providers]
+
+empty = []

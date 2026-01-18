@@ -5,5 +5,6 @@ nvim/spell
 shell/local
 espanso/match/local.yml
 ghostty/colors.conf
+hypr/colors.conf
 *.log
 *.old
