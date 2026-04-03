@@ -25,7 +25,6 @@ return {
       require('mason').setup()
     end
   },
-  { 'williamboman/mason-lspconfig.nvim' },
   {
     'hrsh7th/nvim-cmp',
     dependencies = {
