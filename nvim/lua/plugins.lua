@@ -16,7 +16,8 @@ return {
   { 'nvim-treesitter/nvim-treesitter', branch = 'main', lazy = false, build = ':TSUpdate' },
   { 'mbbill/undotree' },
   { 'tpope/vim-fugitive' },
-  { 'tpope/vim-surround' },
+  { 'lewis6991/gitsigns.nvim' },
+  { 'kylechui/nvim-surround', event = 'VeryLazy' },
   { 'tpope/vim-unimpaired' },
   { 'neovim/nvim-lspconfig' },
   {
@@ -34,6 +35,7 @@ return {
       { 'hrsh7th/cmp-path' }
     }
   },
+  { 'stevearc/conform.nvim' },
   { 'christoomey/vim-tmux-navigator' },
   { 'junegunn/vim-slash' },
   {

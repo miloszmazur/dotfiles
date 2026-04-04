@@ -58,6 +58,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function(ev) vim.treesitter.stop(ev.buf) end,
+})
+
 -- todo
 -- status
 -- formatters

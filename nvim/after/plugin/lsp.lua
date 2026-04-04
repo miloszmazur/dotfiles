@@ -30,5 +30,4 @@ vim.lsp.enable({
 })
 
 vim.diagnostic.config({ float = { source = 'if_many' }, virtual_text = true })
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
