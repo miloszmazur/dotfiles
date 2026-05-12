@@ -2,7 +2,7 @@
 
 source ~/.config/hypr/scripts/audio-helper.sh
 
-hdmi_status=$(cat /sys/class/drm/card0-HDMI-A-1/status 2>/dev/null)
+hdmi_status=$(cat /sys/class/drm/card*-HDMI-A-1/status 2>/dev/null | head -n1)
 if [ "$hdmi_status" != "connected" ]; then
     notify-send -u critical "TV mode" "HDMI not connected — refusing to disable DP-1."
     exit 1
