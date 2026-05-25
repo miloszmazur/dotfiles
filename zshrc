@@ -22,7 +22,7 @@ precmd() {
 }
 
 setopt append_history inc_append_history share_history
-setopt auto_menu menu_complete
+setopt auto_menu
 setopt autocd
 setopt auto_param_slash
 setopt globdots
