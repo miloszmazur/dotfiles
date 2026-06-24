@@ -1,5 +1,7 @@
 zmodload zsh/zprof
 
+bindkey -e
+
 [ -f "$HOME/.config/shell/env" ] && source "$HOME/.config/shell/env"
 [ -f "$HOME/.config/shell/alias" ] && source "$HOME/.config/shell/alias"
 [ -f "$HOME/.config/shell/local" ] && source "$HOME/.config/shell/local"
@@ -60,10 +62,12 @@ command -v argocd >/dev/null && . <(argocd completion zsh)
 [[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && . /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh || true
 [[ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting ]] && . /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting || true
 [[ -f /home/tyr/.config/.dart-cli-completion/zsh-config.zsh ]] && . /home/tyr/.config/.dart-cli-completion/zsh-config.zsh || true
+[[ -f "$HOME/.config/shell/fzf-git.sh" ]] && . "$HOME/.config/shell/fzf-git.sh"
 
 if [[ -f /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
