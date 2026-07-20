@@ -13,7 +13,7 @@ return {
     dependencies = { { 'nvim-lua/plenary.nvim' }, { 'nvim-telescope/telescope-ui-select.nvim' } }
   },
   { 'nvim-tree/nvim-web-devicons',     lazy = true },
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+  { 'nvim-treesitter/nvim-treesitter', branch = 'master', build = ':TSUpdate' },
   { 'mbbill/undotree' },
   { 'tpope/vim-fugitive' },
   { 'tpope/vim-surround' },
@@ -45,5 +45,5 @@ return {
     end
   },
   { 'towolf/vim-helm' },
-  { "nvim-treesitter/nvim-treesitter-textobjects", dependencies = { "nvim-treesitter/nvim-treesitter" } },
+  { "nvim-treesitter/nvim-treesitter-textobjects", branch = 'master', dependencies = { "nvim-treesitter/nvim-treesitter" } },
 }
