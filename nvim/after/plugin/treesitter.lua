@@ -1,73 +1,48 @@
-require 'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "lua", "vim", "vimdoc", "query", "python", "javascript", "typescript" },
-  auto_install = true,
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
+local ts = require('nvim-treesitter')
+
+local ensure_installed = {
+  "lua", "vim", "vimdoc", "query", "python", "javascript", "typescript",
+  "markdown", "markdown_inline",
+}
+ts.install(ensure_installed)
+
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(args)
+    local lang = vim.treesitter.language.get_lang(args.match) or args.match
+    if vim.list_contains(ts.get_installed('parsers'), lang) then
+      pcall(vim.treesitter.start, args.buf, lang)
+    else
+      ts.install(lang):await(function()
+        pcall(vim.treesitter.start, args.buf, lang)
+      end)
+    end
+    vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
+
+require("nvim-treesitter-textobjects").setup {
+  select = {
+    lookahead = true,
+    include_surrounding_whitespace = false,
   },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = '<CR>',
-      scope_incremental = '<CR>',
-      node_incremental = '<TAB>',
-      node_decremental = '<S-TAB>',
-    }
-  },
-  indent = {
-    enable = true
-  }
+  move = { set_jumps = true },
 }
 
-require 'nvim-treesitter.configs'.setup {
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@conditional.outer",
-        ["ic"] = "@conditional.inner",
-        ["is"] = "@assignment.inner",
-        ["as"] = "@assignment.lhs",
-        ["aC"] = "@class.outer",
-        ["iC"] = "@class.inner",
-        ["al"] = "@block.outer",
-        ["il"] = "@block.inner",
-        ["aa"] = "@call.outer",
-        ["ia"] = "@call.inner",
-      },
-      include_surrounding_whitespace = false,
-    },
-  },
-  swap = {
-    enable = true,
-    swap_next = {
-      ["<leader>a"] = "@parameter.inner",
-    },
-    swap_previous = {
-      ["<leader>A"] = "@parameter.inner",
-    },
-  },
+local select = require("nvim-treesitter-textobjects.select")
+local sel = {
+  ["af"] = "@function.outer",    ["if"] = "@function.inner",
+  ["ac"] = "@conditional.outer", ["ic"] = "@conditional.inner",
+  ["is"] = "@assignment.inner",  ["as"] = "@assignment.lhs",
+  ["aC"] = "@class.outer",       ["iC"] = "@class.inner",
+  ["al"] = "@block.outer",       ["il"] = "@block.inner",
+  ["aa"] = "@call.outer",        ["ia"] = "@call.inner",
 }
+for lhs, obj in pairs(sel) do
+  vim.keymap.set({ "x", "o" }, lhs, function()
+    select.select_textobject(obj, "textobjects")
+  end)
+end
 
--- Fix markdown highlighting crash on Nvim 0.12 with nvim-treesitter's frozen
--- `master` branch. The plugin's `set-lang-from-info-string!` directive handler
--- assumes a query capture is a single TSNode, but Nvim 0.12 changed captures to
--- a list of nodes. The old handler passes that list to get_node_text(), which
--- calls node:range() on a nil value and crashes the highlighter. Re-register the
--- directive with a 0.12-safe handler (loads after the plugin, so it wins).
--- Remove once migrated to the nvim-treesitter `main` branch.
-local query = vim.treesitter.query
-query.add_directive("set-lang-from-info-string!", function(match, _, bufnr, pred, metadata)
-  local node = match[pred[2]]
-  -- Nvim 0.12: a capture maps to a list of nodes; older Nvim gave a single node.
-  if type(node) == "table" then node = node[1] end
-  if not node then return end
-  local alias = vim.treesitter.get_node_text(node, bufnr)
-  local lang = vim.filetype.match { filename = "a." .. alias }
-  metadata["injection.language"] = lang or alias
-end, { force = true, all = false })
-
+local swap = require("nvim-treesitter-textobjects.swap")
+vim.keymap.set("n", "<leader>a", function() swap.swap_next("@parameter.inner") end)
+vim.keymap.set("n", "<leader>A", function() swap.swap_previous("@parameter.inner") end)
