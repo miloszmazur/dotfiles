@@ -39,6 +39,9 @@ for file in $config_files; do
     echo "linking $dir/$file to ~/.config/$file"
 done
 
+echo "enabling tracked git hooks in $dir"
+git -C $dir config core.hooksPath githooks
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     if [ -f "$dir/rectangle.plist" ]; then
         echo "importing Rectangle settings..."

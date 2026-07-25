@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+# Runs after `git rebase` and `git commit --amend`.
+# This is the hook that covers `git pull --rebase` - that does NOT run post-merge.
+# stdin: one "<old-sha> <new-sha>" line per rewritten commit.
+
+oldest=""
+while read -r oldsha _rest; do
+    [ -n "$oldest" ] || oldest="$oldsha"
+done
+
+[ -n "$oldest" ] || exit 0
+
+changed=$(git diff --name-only "$oldest" HEAD 2>/dev/null)
+exec "$(dirname "$0")/lib/reload-hypr.sh" "$changed"

@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+# Runs after a `git pull` that merges (no --rebase).
+
+changed=$(git diff --name-only ORIG_HEAD HEAD 2>/dev/null)
+exec "$(dirname "$0")/lib/reload-hypr.sh" "$changed"
