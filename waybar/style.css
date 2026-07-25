@@ -1,173 +1,157 @@
-@define-color critical #ff0000; /* critical color */
-@define-color warning #f3f809;  /* warning color */
-@define-color fgcolor #ffffff;  /* foreground color */
-@define-color bgcolor #303030;  /* background color */
-@define-color bgcolor #222436;  /* background color */
-@define-color alert   #df3320;
+/* ── Tokyo Night Moon palette ─────────────────────────────── */
+@define-color critical #ff0000;
+@define-color warning  #f3f809;
+@define-color fgcolor  #c8d3f5;  /* foreground */
+@define-color bgcolor  #222436;  /* bar background */
+@define-color surface  #2f334d;  /* raised chip surface */
+@define-color alert    #ff757f;
 
-@define-color accent1 #ff7a93;
-@define-color accent2 #b9f27c;
-@define-color accent3 #ff9e64;
-@define-color accent4 #bb9af7;
-@define-color accent5 #7da6ff;
+@define-color accent1 #ff7a93;  /* cpu    */
+@define-color accent2 #b9f27c;  /* network*/
+@define-color accent3 #ff9e64;  /* volume */
+@define-color accent4 #bb9af7;  /* cpu temp */
+@define-color accent5 #7da6ff;  /* gpu temp */
 @define-color accent6 #0db9d7;
 
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
+    /* CaskaydiaMono Nerd Font carries the glyphs (see `fc-list`) */
     border: none;
-    font-family: "JetBrainsMono";
+    border-radius: 0;
+    font-family: "CaskaydiaMono Nerd Font", "Symbols Nerd Font", "Font Awesome 7 Free";
     font-size: 14px;
+    min-height: 0;
 }
 
+/* ── The bar itself (flush to the top edge, full width) ────── */
 window#waybar {
-
-    background-color: rgba(34, 36, 54, 0.6);
-    color: #ffffff;
+    background-color: rgba(34, 36, 54, 0.72);
+    color: @fgcolor;
     transition-property: background-color;
-    transition-duration: .5s;
-    border-radius: 4px;
+    transition-duration: .3s;
+    border-radius: 0;
 }
 
 window#waybar.hidden {
     opacity: 0.2;
 }
 
-#workspaces button {
-    padding: 0px;
-    margin: 4px 0 6px 0;
-    background-color: transparent;
-    color: #ffffff;
-    min-width: 36px;
-}
-
-#workspaces button.active {
-    padding: 0 0 0 0;
-    margin: 4px 0 6px 0;
-    background-color: #ddddff;
-    color: #303030;
-    min-width: 36px;
-}
-
-#workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#workspaces button.focused {
-    background-color: #bbccdd;
-    color: #323232;
-}
-
-#workspaces button.urgent {
-    /* color: red; */
-}
-
-#mode {
-    background-color: #64727D;
-    border-bottom: 1px solid #ffffff;
-}
-
+/* ── Generic module chrome ─────────────────────────────────── */
 #clock,
 #battery,
-#cpu,
 #memory,
-#temperature,
 #backlight,
-#network,
+#custom-network,
+#wireplumber,
 #pulseaudio,
-#custom-media,
 #tray,
 #mode,
 #idle_inhibitor,
-#custom-power,
-#custom-pacman,
-#language {
-    padding: 0px 3px;
-    margin: 4px 3px 5px 3px;
+#window {
+    padding: 0 10px;
+    margin: 5px 3px;
     color: @fgcolor;
-    background-color:transparent;
+    background-color: transparent;
+    border-radius: 8px;
+    transition: background-color .2s ease;
 }
 
-#window,
+/* Hardware group: chrome lives on the group box, inner modules sit flush */
+#hardware {
+    margin: 5px 3px;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: background-color .2s ease;
+}
+#hardware #cpu,
+#hardware #temperature,
+#hardware #memory {
+    padding: 0 8px;
+    margin: 0;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+/* Trim the outermost margins so modules hug the bar edges */
+.modules-right > widget:last-child > * { margin-right: 6px; }
+.modules-left  > widget:first-child > * { margin-left: 6px; }
+
+/* ── Workspaces ────────────────────────────────────────────── */
 #workspaces {
     margin: 0 4px;
 }
 
-/* If workspaces is the leftmost module, omit left margin */
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+#workspaces button {
+    padding: 0 4px;
+    margin: 5px 2px;
+    min-width: 30px;
+    color: @fgcolor;
+    background-color: transparent;
+    border-radius: 8px;
+    transition: all .2s ease;
 }
 
-/* If workspaces is the rightmost module, omit right margin */
-.modules-right > widget:last-child > #workspaces {
-    margin-right: 0;
+#workspaces button:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+    box-shadow: none;
+    text-shadow: none;
 }
 
+#workspaces button.active,
+#workspaces button.focused {
+    color: @bgcolor;
+    background-color: @accent5;
+    min-width: 30px;
+}
+
+#workspaces button.urgent {
+    color: @bgcolor;
+    background-color: @alert;
+}
+
+/* ── Focused window title ──────────────────────────────────── */
+#window {
+    color: #828bb8;
+    font-style: italic;
+}
+window#waybar.empty #window {
+    background-color: transparent;
+}
+
+/* ── Clock — the centered pill ─────────────────────────────── */
 #clock {
     color: @fgcolor;
+    background-color: @surface;
+    font-weight: bold;
+    padding: 0 14px;
 }
 
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #333333;
-    }
-}
-
-label:focus {
-    background-color: #000000;
-}
-
-#cpu {
-    color: @accent1;
-}
-
-#memory {
-    color: #86e2d5;
-}
-
-#network {
-    color: @accent2;
-}
-
-#network.disconnected {
-    color: @alert;
-}
-
-#wireplumber {
-    color: @accent3;
-}
-
-#pulseaudio.muted {
-    color: #a0a0a0;
-}
-
-#temperature.cpu {
-    color: @accent4;
-}
-
-#temperature.gpu {
-    color: @accent5;
-}
-
+/* ── Right-side accents ────────────────────────────────────── */
+#cpu           { color: @accent1; }
+#memory        { color: #86e2d5; }
+#custom-network       { color: @accent2; }
+#custom-network.disconnected { color: @alert; }
+#wireplumber   { color: @accent3; }
+#wireplumber.muted    { color: #6c7086; }
+#temperature.cpu      { color: @accent4; }
+#temperature.gpu      { color: @accent5; }
 #temperature.critical {
+    color: #ffffff;
     background-color: @critical;
 }
 
+/* Subtle hover feedback on interactive modules */
+#custom-network:hover,
+#wireplumber:hover,
+#hardware:hover,
+#clock:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
 #tray {
-
+    padding: 0 8px;
 }
-
-#mpd {
-    color: #d1e231;
-}
-
-#custom-language {
-    color: @accent5;
-    min-width: 16px;
-}
-
-#custom-separator {
-    color: #606060;
-    margin: 0 1px;
-    padding-bottom: 5px;
+#tray > .passive { -gtk-icon-effect: dim; }
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @alert;
 }

@@ -2,97 +2,111 @@
   "layer": "top",
   "position": "top",
   "height": 34,
-  "margin-bottom":0,
-  "margin-top":0,
+  "margin-top": 0,
+  "margin-bottom": 0,
 
   "modules-left": [
-    "hyprland/workspaces",
-    "mpd"
+    "hyprland/workspaces"
   ],
   "modules-center": ["clock"],
   "modules-right":  [
     "tray",
     "wireplumber",
-    "network",
-    "cpu",
-    "temperature#cpu",
-    "temperature#gpu",
-    "memory"
+    "custom/network",
+    "group/hardware"
   ],
+  "group/hardware": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "temperature#cpu",
+      "temperature#gpu",
+      "memory"
+    ]
+  },
   "hyprland/workspaces": {
     "sort-by-name": true,
     "on-click": "activate"
-  },
-  "hyprland/window": {
-    "max-length": 200,
-    "separate-outputs": true
   },
   "tray": {
     "icon-size": 16,
     "spacing": 6
   },
   "clock": {
-    "format": "{:%A %H:%M}",
-    "format-alt": "{:%d %B %Y}",
+    "format": "{:%H:%M   <span color='#7f869e'>%a %d %b</span>}",
+    "format-alt": "{:%H:%M   <span color='#7f869e'>%A, %d %B %Y</span>}",
+    "on-click": "ghostty --confirm-close-surface=false -e khal interactive",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
-      "mode": "year",
+      "mode": "month",
+      "mode-mon-col": 3,
+      "on-scroll": 1,
       "format": {
         "today": "<span color='#a6e3a1'><b>{}</b></span>"
       }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
     }
   },
   "cpu": {
-    "format": "&#8239; {usage}%",
+    "on-click": "ghostty --confirm-close-surface=false -e btop",
+    "interval": 5,
+    "format": "  {usage}%",
     "tooltip": true
   },
   "memory": {
+    "on-click": "ghostty --confirm-close-surface=false -e btop",
     "interval": 30,
-    "format": " {used:0.2f}GB",
-    "max-length": 10,
-    "tooltip": false,
-    "warning": 70,
-    "critical": 90
+    "format": "󰍛  {used:0.1f}/{total:0.1f} GB",
+    "tooltip": true,
+    "tooltip-format": "{percentage}% of RAM in use",
+    "states": {
+      "warning": 70,
+      "critical": 90
+    }
   },
-"temperature#cpu": {
-    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+  "temperature#cpu": {
+    "on-click": "ghostty --confirm-close-surface=false -e btop",
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:18.3/hwmon",
+    "input-filename": "temp1_input",
     "critical-threshold": 80,
     "interval": 10,
-		"format-critical": "󰀦 C:{temperatureC}°C",
-		"format": "{icon}C:{temperatureC}°C",
-		"format-icons": [
-			"", "", ""
-		]
-},
-"temperature#gpu": {
-    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "format-critical": "󰀦 C:{temperatureC}°C",
+    "format": "{icon} C:{temperatureC}°C",
+    "format-icons": ["", "", ""]
+  },
+  "temperature#gpu": {
+    "on-click": "ghostty --confirm-close-surface=false -e btop",
+    "hwmon-path-abs": "/sys/devices/pci0000:00/0000:00:08.1/0000:0b:00.0/hwmon",
+    "input-filename": "temp1_input",
     "critical-threshold": 85,
-		"format-critical": "󰀦G:{temperatureC}°C",
-		"format": "{icon}G:{temperatureC}°C",
-		"format-icons": [
-			"", "", ""
-    ]
-},
-  "network": {
+    "interval": 10,
+    "format-critical": "󰀦 G:{temperatureC}°C",
+    "format": "{icon} G:{temperatureC}°C",
+    "format-icons": ["", "", ""]
+  },
+  "custom/network": {
+    "exec": "~/.config/waybar/scripts/network.sh",
+    "return-type": "json",
     "interval": 2,
-    "format-wifi": " {signalStrength}%",
-    "format-alt": "{essid}",
-    "format-ethernet": "",
-    "format-disconnected": " Disconnected",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "max-length": 20,
     "min-length": 6,
-    "on-click": "ghostty -e nmtui"
+    "on-click": "ghostty --confirm-close-surface=false -e nmtui"
   },
   "wireplumber": {
-    "format": "{icon}   {volume}%",
-    "format-muted": "",
+    "format": "{icon}  {volume}%",
+    "format-muted": "  muted",
     "format-icons": {
       "headphones": "",
       "default": ["", ""]
     },
     "on-click": "pavucontrol",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-",
     "tooltip-format": "{node_name}"
-  },
+  }
 }
