@@ -6,5 +6,6 @@ shell/local
 espanso/match/local.yml
 ghostty/colors.conf
 hypr/colors.conf
+hypr/colors.lua
 *.log
 *.old
