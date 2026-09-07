@@ -6,7 +6,7 @@
   "margin-bottom": 0,
 
   "modules-left": [
-    "hyprland/workspaces"
+    "ext/workspaces"
   ],
   "modules-center": ["clock"],
   "modules-right":  [
@@ -24,9 +24,8 @@
       "memory"
     ]
   },
-  "hyprland/workspaces": {
-    "sort-by-name": true,
-    "on-click": "activate"
+  "ext/workspaces": {
+    "sort-by-name": true
   },
   "tray": {
     "icon-size": 16,
