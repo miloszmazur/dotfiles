@@ -25,7 +25,8 @@
     ]
   },
   "ext/workspaces": {
-    "sort-by-name": true
+    "sort-by-name": true,
+    "on-click": "activate"
   },
   "tray": {
     "icon-size": 16,
